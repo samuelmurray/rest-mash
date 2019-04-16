@@ -2,6 +2,7 @@ package app;
 
 public class Album {
     private String title;
+    private String id;
 
     public Album() {
     }
@@ -12,5 +13,13 @@ public class Album {
 
     public String getTitle() {
         return title;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }
