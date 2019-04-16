@@ -7,7 +7,7 @@ public class Artist {
     public Artist(long id, String mbid) {
         this.id = id;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        this.content = consumer.getValue();
+        this.content = consumer.getContent();
     }
 
     public long getId() {
