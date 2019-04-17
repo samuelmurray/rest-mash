@@ -8,6 +8,7 @@ public class Artist {
         this.id = id;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         this.content = consumer.getContent();
+        content.addCoverArtToAlbums();
     }
 
     public long getId() {

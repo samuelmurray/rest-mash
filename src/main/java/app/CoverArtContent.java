@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoverArtContent {
 
-    private String imageUrl;
+    private Image[] images;
 
     public CoverArtContent() {
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImages(Image[] images) {
+        this.images = images;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Image[] getImages() {
+        return images;
     }
 }

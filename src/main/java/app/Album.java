@@ -3,6 +3,7 @@ package app;
 public class Album {
     private String title;
     private String id;
+    private CoverArtContent content;
 
     public Album() {
     }
@@ -21,5 +22,14 @@ public class Album {
 
     public String getId() {
         return id;
+    }
+
+    public void addCoverArt() {
+        CoverArtConsumer consumer = new CoverArtConsumer(id);
+        content = consumer.getContent();
+    }
+
+    public CoverArtContent getContent() {
+        return content;
     }
 }

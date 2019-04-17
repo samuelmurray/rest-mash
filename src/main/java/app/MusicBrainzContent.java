@@ -28,4 +28,10 @@ public class MusicBrainzContent {
     public String getName() {
         return name;
     }
+
+    public void addCoverArtToAlbums() {
+        for (Album album : albums) {
+            album.addCoverArt();
+        }
+    }
 }
