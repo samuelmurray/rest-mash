@@ -1,5 +1,6 @@
 package app;
 
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 public class CoverArtConsumer {
@@ -17,7 +18,12 @@ public class CoverArtConsumer {
     }
 
     private void consume(String mbid) {
-        content = restTemplate.getForObject(buildUrl(mbid), CoverArtContent.class);
+        try {
+            content = restTemplate.getForObject(buildUrl(mbid), CoverArtContent.class);
+        } catch (HttpClientErrorException ex) {
+            System.err.println(ex.toString());
+            System.err.println(mbid);
+        }
     }
 
     private String buildUrl(String mbid) {
