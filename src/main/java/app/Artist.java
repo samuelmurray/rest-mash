@@ -8,7 +8,7 @@ public class Artist {
         this.id = id;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         content = consumer.getContent();
-        content.addCoverArtToAlbums();
+        // content.addCoverArtToAlbums();  // FIXME: Remove before merging
     }
 
     public long getId() {
