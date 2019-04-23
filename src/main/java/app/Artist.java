@@ -43,14 +43,10 @@ public class Artist {
 
     private String createWikipediaTitle() throws URISyntaxException {
         try {
-            return createWikipediaTitleDirectly();
+            return musicBrainzContent.getWikipediaTitle();
         } catch (NoSuchElementException e) {
             return createWikipediaTitleFromWikidata();
         }
-    }
-
-    private String createWikipediaTitleDirectly() throws URISyntaxException {
-        return musicBrainzContent.getWikipediaTitle();
     }
 
     private String createWikipediaTitleFromWikidata() throws URISyntaxException {
