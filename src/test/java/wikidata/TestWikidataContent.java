@@ -2,7 +2,11 @@ package wikidata;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class TestWikidataContent {
 
@@ -20,4 +24,18 @@ public class TestWikidataContent {
         assertEquals("Nirvana (band)", content.getEnwikiTitle(id));
     }
 
+    @Test
+    public void testGetEntitiesNull() {
+        WikidataContent content = new WikidataContent();
+        assertNull(content.getEntities());
+    }
+
+    @Test
+    public void testGetEntities() {
+        WikidataContent content = new WikidataContent();
+        Map<String, Object> entities = new HashMap<>();
+        entities.put("Key", null);
+        content.setEntities(entities);
+        assertEquals(entities, content.getEntities());
+    }
 }
