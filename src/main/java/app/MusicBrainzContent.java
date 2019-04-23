@@ -46,25 +46,20 @@ public class MusicBrainzContent {
         }
     }
 
-    public String getWikiUrl() {
+    public String getWikiDataId() {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikidata")) {
-                return getUrlFromRelation(relation);
+                return getWikiDataIdFromRelation(relation);
             }
         }
         return "MISSING";
     }
 
-    private String getUrlFromRelation(MusicBrainzRelation relation) {
+    private String getWikiDataIdFromRelation(MusicBrainzRelation relation) {
         try {
-            String id = relation.getUrl().lastPartOfUrl();
-            return buildWikiUrl(id);
+            return relation.getUrl().lastPartOfUrl();
         } catch (URISyntaxException e) {
             return "MISSING";
         }
-    }
-
-    private String buildWikiUrl(String id) {
-        return "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + id + "&format=json&props=sitelinks";
     }
 }
