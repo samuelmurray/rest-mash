@@ -9,6 +9,7 @@ import wikipedia.WikipediaContent;
 
 public class Artist {
     private final long id;
+    private final String mbid;
     private final MusicBrainzContent content;
     private final WikidataContent wikidataContent;
     private final WikipediaContent wikipediaContent;
@@ -16,6 +17,7 @@ public class Artist {
 
     public Artist(long id, String mbid) {
         this.id = id;
+        this.mbid = mbid;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         content = consumer.getContent();
         content.addCoverArtToAlbums();
@@ -25,6 +27,10 @@ public class Artist {
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         wikipediaContent = wikipediaConsumer.getContent();
+    }
+
+    public String getMbid() {
+        return mbid;
     }
 
     public long getId() {
