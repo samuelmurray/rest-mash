@@ -38,8 +38,7 @@ public class Artist {
     }
 
     private WikidataContent createWikidataContent(String wikidataId) {
-        WikidataContentFactory consumer = new WikidataContentFactory(wikidataId);
-        return consumer.getContent();
+        return WikidataContentFactory.createFromWikidataId(wikidataId);
     }
 
     public String getMbid() {
