@@ -46,6 +46,15 @@ public class MusicBrainzContent {
         }
     }
 
+    public String getWikiUrl() {
+        for (MusicBrainzRelation relation : relations) {
+            if (relation.getType().equals("wikidata")) {
+                return getUrlFromRelation(relation);
+            }
+        }
+        return "MISSING";
+    }
+
     private String getUrlFromRelation(MusicBrainzRelation relation) {
         try {
             String id = relation.getUrl().lastPartOfUrl();
