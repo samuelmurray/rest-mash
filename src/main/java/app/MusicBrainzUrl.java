@@ -19,7 +19,6 @@ public class MusicBrainzUrl {
 
     public String lastPartOfUrl() throws URISyntaxException {
         URI uri = new URI(getResource());
-        System.out.println(uri.toString());
         String[] segments = uri.getPath().split("/");
         return segments[segments.length - 1];
     }
