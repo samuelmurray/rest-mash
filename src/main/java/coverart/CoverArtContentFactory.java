@@ -5,25 +5,19 @@ import org.springframework.web.client.RestTemplate;
 
 public class CoverArtContentFactory {
     private static final String URL_PREFIX = "http://coverartarchive.org/release-group/";
-    private RestTemplate restTemplate;
-    private CoverArtContent content;
 
-    public CoverArtContentFactory(String mbid) {
-        restTemplate = new RestTemplate();
-        consume(mbid);
+    private CoverArtContentFactory() {
     }
 
     public static CoverArtContent createFromMbid(String mbid) {
-        CoverArtContentFactory consumer = new CoverArtContentFactory(mbid);
-        return consumer.content;
-    }
-
-    private void consume(String mbid) {
+        RestTemplate restTemplate = new RestTemplate();
         try {
-            content = restTemplate.getForObject(buildUrl(mbid), CoverArtContent.class);
+            String url = buildUrl(mbid);
+            return restTemplate.getForObject(url, CoverArtContent.class);
         } catch (HttpClientErrorException ex) {
             System.err.println(ex.toString());
             System.err.println(mbid);
+            return null;
         }
     }
 
