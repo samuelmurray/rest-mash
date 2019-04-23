@@ -11,7 +11,8 @@ public class WikidataContentFactory {
 
     public static WikidataContent createFromWikidataId(String wikidataId) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(buildUrl(wikidataId), WikidataContent.class);
+        String url = buildUrl(wikidataId);
+        return restTemplate.getForObject(url, WikidataContent.class);
     }
 
     private static String buildUrl(String wikidataId) {
