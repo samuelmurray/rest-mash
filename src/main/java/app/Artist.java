@@ -19,7 +19,7 @@ public class Artist {
         this.id = id;
         this.mbid = mbid;
         musicBrainzContent = createMusicBrainzContent(mbid);
-        musicBrainzContent.addCoverArtToAlbums();
+        // musicBrainzContent.addCoverArtToAlbums();
         wikipediaContent = createWikipediaContent();
     }
 
@@ -41,6 +41,18 @@ public class Artist {
     }
 
     private String createWikipediaTitle() throws URISyntaxException {
+        try {
+            return createWikipediaTitleDirectly();
+        } catch (RuntimeException e) {
+            return createWikipediaTitleFromWikidata();
+        }
+    }
+
+    private String createWikipediaTitleDirectly() throws URISyntaxException {
+        return musicBrainzContent.getWikipediaTitle();
+    }
+
+    private String createWikipediaTitleFromWikidata() throws URISyntaxException {
         String wikidataId = musicBrainzContent.getWikidataId();
         WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
         return content.getEnwikiTitle(wikidataId);
