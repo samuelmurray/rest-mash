@@ -1,4 +1,4 @@
-package app;
+package wikipedia;
 
 import org.springframework.web.client.RestTemplate;
 

@@ -1,4 +1,4 @@
-package app;
+package wikipedia;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -2,6 +2,8 @@ package app;
 
 import wikidata.WikidataConsumer;
 import wikidata.WikidataContent;
+import wikipedia.WikipediaConsumer;
+import wikipedia.WikipediaContent;
 
 public class Artist {
     private final long id;
