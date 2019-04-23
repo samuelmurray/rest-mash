@@ -1,6 +1,6 @@
 package app;
 
-import musicbrainz.MusicBrainzConsumer;
+import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
 import wikidata.WikidataConsumer;
 import wikidata.WikidataContent;
@@ -22,7 +22,7 @@ public class Artist {
     }
 
     private MusicBrainzContent createMusicBrainzContent(String mbid) {
-        return MusicBrainzConsumer.createFromMbid(mbid);
+        return MusicBrainzContentFactory.createFromMbid(mbid);
     }
 
     private WikipediaContent createWikipediaContent() {

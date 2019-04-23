@@ -2,11 +2,11 @@ package musicbrainz;
 
 import org.springframework.web.client.RestTemplate;
 
-public class MusicBrainzConsumer {
+public class MusicBrainzContentFactory {
     private static final String urlPrefix = "http://musicbrainz.org/ws/2/artist/";
     private static final String urlSuffix = "?&fmt=json&inc=url-rels+release-groups";
 
-    private MusicBrainzConsumer(String mbid) {
+    private MusicBrainzContentFactory() {
     }
 
     public static MusicBrainzContent createFromMbid(String mbid) {
