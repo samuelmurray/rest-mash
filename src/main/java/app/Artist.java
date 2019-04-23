@@ -17,7 +17,7 @@ public class Artist {
         this.id = id;
         this.mbid = mbid;
         musicBrainzContent = createMusicBrainzContent(mbid);
-        // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
+        musicBrainzContent.addCoverArtToAlbums();
         wikipediaContent = createWikipediaContent();
     }
 
