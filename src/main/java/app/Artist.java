@@ -33,30 +33,15 @@ public class Artist {
         return mbid;
     }
 
-    public long getId() {
-        return id;
-    }
     public String getName() {
         return content.getName();
     }
-    
+
     public Album[] getAlbums() {
         return content.getAlbums();
     }
 
-    public WikidataContent getWikidataContent() {
-        return wikidataContent;
-    }
-
-    public String getEnwikiTitle() {
-        return enwikiTitle;
-    }
-
-    public WikipediaContent getWikipediaContent() {
-        return wikipediaContent;
-    }
-
-    public MusicBrainzContent getContent() {
-        return content;
+    public String getDescription() {
+        return wikipediaContent.getExtract();
     }
 }
