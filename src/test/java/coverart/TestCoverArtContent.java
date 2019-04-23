@@ -20,4 +20,19 @@ public class TestCoverArtContent {
         String id = "60c826fb-8853-3796-8ff2-16c35f362ec9";
         assertNull(CoverArtContentFactory.createFromMbid(id));
     }
+
+    @Test
+    public void testGetImagesNull() {
+        CoverArtContent content = new CoverArtContent();
+        assertNull(content.getImages());
+    }
+
+    @Test
+    public void testGetImages() {
+        CoverArtContent content = new CoverArtContent();
+        CoverArtImage image = new CoverArtImage();
+        CoverArtImage[] images = new CoverArtImage[]{image};
+        content.setImages(images);
+        assertArrayEquals(images, content.getImages());
+    }
 }
