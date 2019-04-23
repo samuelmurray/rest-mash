@@ -21,7 +21,7 @@ public class MusicBrainzConsumer {
         return content;
     }
 
-    private String buildUrl(String mbid){
+    private static String buildUrl(String mbid) {
         return urlPrefix + mbid + urlSuffix;
     }
 }
