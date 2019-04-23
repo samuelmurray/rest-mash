@@ -11,7 +11,8 @@ public class MusicBrainzContentFactory {
 
     public static MusicBrainzContent createFromMbid(String mbid) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(buildUrl(mbid), MusicBrainzContent.class);
+        String url = buildUrl(mbid);
+        return restTemplate.getForObject(url, MusicBrainzContent.class);
     }
 
     private static String buildUrl(String mbid) {
