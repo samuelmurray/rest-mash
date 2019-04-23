@@ -2,14 +2,14 @@ package wikidata;
 
 import org.springframework.web.client.RestTemplate;
 
-public class WikidataConsumer {
+public class WikidataContentFactory {
     private static final String urlPrefix = "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=";
     private static final String urlSuffix = "&format=json&props=sitelinks";
     private RestTemplate restTemplate;
     private WikidataContent content;
 
 
-    public WikidataConsumer(String wikidataId) {
+    public WikidataContentFactory(String wikidataId) {
         restTemplate = new RestTemplate();
         consume(wikidataId);
     }

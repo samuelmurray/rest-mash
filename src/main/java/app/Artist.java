@@ -2,7 +2,7 @@ package app;
 
 import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
-import wikidata.WikidataConsumer;
+import wikidata.WikidataContentFactory;
 import wikidata.WikidataContent;
 import wikipedia.WikipediaConsumer;
 import wikipedia.WikipediaContent;
@@ -38,7 +38,7 @@ public class Artist {
     }
 
     private WikidataContent createWikidataContent(String wikidataId) {
-        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
+        WikidataContentFactory consumer = new WikidataContentFactory(wikidataId);
         return consumer.getContent();
     }
 
