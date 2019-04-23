@@ -15,11 +15,7 @@ public class CoverArtConsumer {
 
     public static CoverArtContent createFromMbid(String mbid) {
         CoverArtConsumer consumer = new CoverArtConsumer(mbid);
-        return consumer.getContent();
-    }
-
-    public CoverArtContent getContent() {
-        return content;
+        return consumer.content;
     }
 
     private void consume(String mbid) {
