@@ -56,6 +56,15 @@ public class MusicBrainzContent {
         throw new RuntimeException("Wikidata not found");
     }
 
+    public String getWikipediaTitle() throws URISyntaxException {
+        for (MusicBrainzRelation relation : relations) {
+            if (relation.getType().equals("wikipedia")) {
+                return getLastPartOfRelationUrl(relation);
+            }
+        }
+        throw new RuntimeException("Wikipedia relation not found");
+    }
+
     private String getLastPartOfRelationUrl(MusicBrainzRelation relation) throws URISyntaxException {
         return relation.getUrl().lastPartOfUrl();
     }
