@@ -11,14 +11,13 @@ public class Artist {
         this.id = id;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         content = consumer.getContent();
-        // content.addCoverArtToAlbums();  // FIXME: Add before merge
+        content.addCoverArtToAlbums();
         String wikidataId = content.getWikiDataId();
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         wikidataContent = wikiDataConsumer.getContent();
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         wikipediaContent = wikipediaConsumer.getContent();
-        System.out.println(wikipediaContent.getExtract());
     }
 
     public long getId() {
