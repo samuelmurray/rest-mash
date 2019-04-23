@@ -1,8 +1,10 @@
 package app;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Album {
     private String title;
-    private String id;
+    private String mbid;
     private CoverArtContent content;
 
     public Album() {
@@ -16,16 +18,17 @@ public class Album {
         return title;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    @JsonProperty(value = "id")
+    public void setMbid(String mbid) {
+        this.mbid = mbid;
     }
 
-    public String getId() {
-        return id;
+    public String getMbid() {
+        return mbid;
     }
 
     public void addCoverArt() {
-        CoverArtConsumer consumer = new CoverArtConsumer(id);
+        CoverArtConsumer consumer = new CoverArtConsumer(mbid);
         content = consumer.getContent();
     }
 
