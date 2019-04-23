@@ -1,4 +1,4 @@
-package app;
+package musicbrainz;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

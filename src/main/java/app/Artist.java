@@ -1,5 +1,7 @@
 package app;
 
+import musicbrainz.MusicBrainzConsumer;
+import musicbrainz.MusicBrainzContent;
 import wikidata.WikidataConsumer;
 import wikidata.WikidataContent;
 import wikipedia.WikipediaConsumer;
