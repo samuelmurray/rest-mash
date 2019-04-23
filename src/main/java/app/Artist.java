@@ -20,11 +20,15 @@ public class Artist {
         musicBrainzContent = consumer.getContent();
         // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
         String wikidataId = musicBrainzContent.getWikiDataId();
+        wikipediaContent = createWikipediaContent(wikidataId);
+    }
+
+    private WikipediaContent createWikipediaContent(String wikidataId) {
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         WikidataContent wikidataContent = wikiDataConsumer.getContent();
         String enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
-        wikipediaContent = wikipediaConsumer.getContent();
+        return wikipediaConsumer.getContent();
     }
 
     public String getMbid() {
