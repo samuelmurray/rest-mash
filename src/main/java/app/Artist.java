@@ -34,9 +34,13 @@ public class Artist {
 
     private String createWikipediaTitle() {
         String wikidataId = musicBrainzContent.getWikidataId();
-        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
-        WikidataContent content = consumer.getContent();
+        WikidataContent content = createWikidataContent(wikidataId);
         return content.getEnwikiTitle(wikidataId);
+    }
+
+    private WikidataContent createWikidataContent(String wikidataId) {
+        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
+        return consumer.getContent();
     }
 
     public String getMbid() {
