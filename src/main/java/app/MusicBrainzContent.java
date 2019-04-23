@@ -3,6 +3,8 @@ package app;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.net.URISyntaxException;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
 
@@ -42,5 +44,10 @@ public class MusicBrainzContent {
         for (Album album : albums) {
             album.addCoverArt();
         }
+    }
+
+
+    private String buildWikiUrl(String id) {
+        return "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + id + "&format=json&props=sitelinks";
     }
 }
