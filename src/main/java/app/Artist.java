@@ -22,8 +22,7 @@ public class Artist {
     }
 
     private MusicBrainzContent createMusicBrainzContent(String mbid) {
-        MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        return consumer.getContent();
+        return MusicBrainzConsumer.createFromMbid(mbid);
     }
 
     private WikipediaContent createWikipediaContent() {
