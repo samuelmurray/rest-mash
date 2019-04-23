@@ -14,6 +14,12 @@ public class WikidataContentFactory {
         consume(wikidataId);
     }
 
+    public static WikidataContent createFromWikidataId(String wikidataId) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(buildUrl(wikidataId), WikidataContent.class);
+    }
+
+
     private void consume(String wikidataId) {
         content = restTemplate.getForObject(buildUrl(wikidataId), WikidataContent.class);
     }
