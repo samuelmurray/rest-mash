@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+public class CoverArtImage {
 
     private String url;
 
-    public Image() {
+    public CoverArtImage() {
     }
 
     @JsonProperty(value = "image", defaultValue = "MISSING")
