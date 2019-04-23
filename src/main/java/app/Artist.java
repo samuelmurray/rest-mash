@@ -11,7 +11,6 @@ public class Artist {
     private final long id;
     private final String mbid;
     private final MusicBrainzContent musicBrainzContent;
-    private final WikidataContent wikidataContent;
     private final WikipediaContent wikipediaContent;
     private final String enwikiTitle;
 
@@ -23,7 +22,7 @@ public class Artist {
         // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
         String wikidataId = musicBrainzContent.getWikiDataId();
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
-        wikidataContent = wikiDataConsumer.getContent();
+        WikidataContent wikidataContent = wikiDataConsumer.getContent();
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         wikipediaContent = wikipediaConsumer.getContent();
