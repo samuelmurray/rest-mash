@@ -14,7 +14,8 @@ public class WikipediaContentFactory {
     }
 
     private void consume(String wikipediaTitle) {
-        content = restTemplate.getForObject(buildUrl(wikipediaTitle), WikipediaContent.class);
+        String url = buildUrl(wikipediaTitle);
+        content = restTemplate.getForObject(url, WikipediaContent.class);
     }
 
     public WikipediaContent getContent() {
