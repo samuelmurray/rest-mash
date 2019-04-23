@@ -13,6 +13,12 @@ public class WikipediaContentFactory {
         consume(wikipediaTitle);
     }
 
+    public static WikipediaContent createFromWikipediaTitle(String wikipediaTitle) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = buildUrl(wikipediaTitle);
+        return restTemplate.getForObject(url, WikipediaContent.class);
+    }
+
     private void consume(String wikipediaTitle) {
         String url = buildUrl(wikipediaTitle);
         content = restTemplate.getForObject(url, WikipediaContent.class);
