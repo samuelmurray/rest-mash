@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WikiDataContent {
+public class WikidataContent {
     private Map<String, Object> entities;
 
     public Map<String, Object> getEntities() {
@@ -16,8 +16,8 @@ public class WikiDataContent {
         this.entities = entities;
     }
 
-    public String getEnwikiTitle(String wikiId) {
-        Map<String,Object> wikiIdMap = (Map<String,Object>)entities.get(wikiId);
+    public String getEnwikiTitle(String wikidataId) {
+        Map<String,Object> wikiIdMap = (Map<String,Object>)entities.get(wikidataId);
         Map<String,Object> sitelinks = (Map<String,Object>)wikiIdMap.get("sitelinks");
         Map<String,Object> enwiki = (Map<String,Object>)sitelinks.get("enwiki");
         System.out.println((String)enwiki.get("title"));
