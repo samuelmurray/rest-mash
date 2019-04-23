@@ -39,6 +39,10 @@ public class Artist {
     public String getName() {
         return content.getName();
     }
+    
+    public Album[] getAlbums() {
+        return content.getAlbums();
+    }
 
     public WikidataContent getWikidataContent() {
         return wikidataContent;
