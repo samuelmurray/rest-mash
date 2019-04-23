@@ -10,7 +10,7 @@ import wikipedia.WikipediaContent;
 public class Artist {
     private final long id;
     private final String mbid;
-    private final MusicBrainzContent content;
+    private final MusicBrainzContent musicBrainzContent;
     private final WikidataContent wikidataContent;
     private final WikipediaContent wikipediaContent;
     private final String enwikiTitle;
@@ -19,9 +19,9 @@ public class Artist {
         this.id = id;
         this.mbid = mbid;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        content = consumer.getContent();
-        // content.addCoverArtToAlbums();  // FIXME: Remove before merge
-        String wikidataId = content.getWikiDataId();
+        musicBrainzContent = consumer.getContent();
+        // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
+        String wikidataId = musicBrainzContent.getWikiDataId();
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         wikidataContent = wikiDataConsumer.getContent();
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
@@ -34,11 +34,11 @@ public class Artist {
     }
 
     public String getName() {
-        return content.getName();
+        return musicBrainzContent.getName();
     }
 
     public Album[] getAlbums() {
-        return content.getAlbums();
+        return musicBrainzContent.getAlbums();
     }
 
     public String getDescription() {
