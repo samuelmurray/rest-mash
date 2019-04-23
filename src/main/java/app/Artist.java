@@ -42,7 +42,6 @@ public class Artist {
 
     private String createWikipediaTitle() throws URISyntaxException {
         String wikidataId = musicBrainzContent.getWikidataId();
-        System.out.println(wikidataId);
         WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
         return content.getEnwikiTitle(wikidataId);
     }
