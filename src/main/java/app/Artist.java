@@ -20,7 +20,7 @@ public class Artist {
         this.mbid = mbid;
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         content = consumer.getContent();
-        content.addCoverArtToAlbums();
+        // content.addCoverArtToAlbums();  // FIXME: Remove before merge
         String wikidataId = content.getWikiDataId();
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         wikidataContent = wikiDataConsumer.getContent();
