@@ -31,8 +31,7 @@ public class Album {
     }
 
     public void addCoverArt() {
-        CoverArtConsumer consumer = new CoverArtConsumer(mbid);
-        content = consumer.getContent();
+        content = CoverArtConsumer.createFromMbid(mbid);
     }
 
 
