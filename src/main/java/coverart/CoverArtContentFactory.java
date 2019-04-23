@@ -3,18 +3,18 @@ package coverart;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-public class CoverArtConsumer {
+public class CoverArtContentFactory {
     private static final String URL_PREFIX = "http://coverartarchive.org/release-group/";
     private RestTemplate restTemplate;
     private CoverArtContent content;
 
-    public CoverArtConsumer(String mbid) {
+    public CoverArtContentFactory(String mbid) {
         restTemplate = new RestTemplate();
         consume(mbid);
     }
 
     public static CoverArtContent createFromMbid(String mbid) {
-        CoverArtConsumer consumer = new CoverArtConsumer(mbid);
+        CoverArtContentFactory consumer = new CoverArtContentFactory(mbid);
         return consumer.content;
     }
 
