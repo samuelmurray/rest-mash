@@ -42,8 +42,4 @@ public class Album {
         }
         return content.getImages();
     }
-
-    public CoverArtContent getContent() {
-        return content;
-    }
 }
