@@ -47,7 +47,7 @@ public class MusicBrainzContent {
         }
     }
 
-    public String getWikiDataId() {
+    public String getWikidataId() {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikidata")) {
                 return getWikiDataIdFromRelation(relation);
