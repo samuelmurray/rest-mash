@@ -13,6 +13,11 @@ public class MusicBrainzConsumer {
         consume(mbid);
     }
 
+    public static MusicBrainzContent createFromMbid(String mbid) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(buildUrl(mbid), MusicBrainzContent.class);
+    }
+
     private void consume(String mbid) {
         content = restTemplate.getForObject(buildUrl(mbid), MusicBrainzContent.class);
     }
