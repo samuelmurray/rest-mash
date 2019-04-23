@@ -47,16 +47,16 @@ public class MusicBrainzContent {
         }
     }
 
-    public String getWikiDataId() {
+    public String getWikidataId() {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikidata")) {
-                return getWikiDataIdFromRelation(relation);
+                return getWikidataIdFromRelation(relation);
             }
         }
         return "MISSING";
     }
 
-    private String getWikiDataIdFromRelation(MusicBrainzRelation relation) {
+    private String getWikidataIdFromRelation(MusicBrainzRelation relation) {
         try {
             return relation.getUrl().lastPartOfUrl();
         } catch (URISyntaxException e) {

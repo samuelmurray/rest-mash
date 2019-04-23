@@ -9,41 +9,53 @@ import wikipedia.WikipediaContent;
 
 public class Artist {
     private final long id;
-    private final MusicBrainzContent content;
-    private final WikidataContent wikidataContent;
+    private final String mbid;
+    private final MusicBrainzContent musicBrainzContent;
     private final WikipediaContent wikipediaContent;
-    private final String enwikiTitle;
 
     public Artist(long id, String mbid) {
         this.id = id;
+        this.mbid = mbid;
+        musicBrainzContent = createMusicBrainzContent(mbid);
+        musicBrainzContent.addCoverArtToAlbums();
+        wikipediaContent = createWikipediaContent();
+    }
+
+    private MusicBrainzContent createMusicBrainzContent(String mbid) {
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        content = consumer.getContent();
-        content.addCoverArtToAlbums();
-        String wikidataId = content.getWikiDataId();
-        WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
-        wikidataContent = wikiDataConsumer.getContent();
-        enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
-        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
-        wikipediaContent = wikipediaConsumer.getContent();
+        return consumer.getContent();
     }
 
-    public long getId() {
-        return id;
+    private WikipediaContent createWikipediaContent() {
+        String title = createWikipediaTitle();
+        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(title);
+        return wikipediaConsumer.getContent();
     }
 
-    public WikidataContent getWikidataContent() {
-        return wikidataContent;
+    private String createWikipediaTitle() {
+        String wikidataId = musicBrainzContent.getWikidataId();
+        WikidataContent content = createWikidataContent(wikidataId);
+        return content.getEnwikiTitle(wikidataId);
     }
 
-    public String getEnwikiTitle() {
-        return enwikiTitle;
+    private WikidataContent createWikidataContent(String wikidataId) {
+        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
+        return consumer.getContent();
     }
 
-    public WikipediaContent getWikipediaContent() {
-        return wikipediaContent;
+    public String getMbid() {
+        return mbid;
     }
 
-    public MusicBrainzContent getContent() {
-        return content;
+    public String getName() {
+        return musicBrainzContent.getName();
+    }
+
+    public Album[] getAlbums() {
+        return musicBrainzContent.getAlbums();
+    }
+
+    public String getDescription() {
+        return wikipediaContent.getExtract();
     }
 }

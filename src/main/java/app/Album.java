@@ -3,6 +3,7 @@ package app;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import coverart.CoverArtConsumer;
 import coverart.CoverArtContent;
+import coverart.CoverArtImage;
 
 public class Album {
     private String title;
@@ -34,7 +35,11 @@ public class Album {
         content = consumer.getContent();
     }
 
-    public CoverArtContent getContent() {
-        return content;
+
+    public CoverArtImage[] getImages() {
+        if (content == null) {
+            return null;
+        }
+        return content.getImages();
     }
 }
