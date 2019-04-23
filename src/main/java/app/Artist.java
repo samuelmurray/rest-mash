@@ -12,7 +12,6 @@ public class Artist {
     private final String mbid;
     private final MusicBrainzContent musicBrainzContent;
     private final WikipediaContent wikipediaContent;
-    private final String enwikiTitle;
 
     public Artist(long id, String mbid) {
         this.id = id;
@@ -23,7 +22,7 @@ public class Artist {
         String wikidataId = musicBrainzContent.getWikiDataId();
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         WikidataContent wikidataContent = wikiDataConsumer.getContent();
-        enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
+        String enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         wikipediaContent = wikipediaConsumer.getContent();
     }
