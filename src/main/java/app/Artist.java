@@ -18,7 +18,7 @@ public class Artist {
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         wikipediaContent = wikipediaConsumer.getContent();
-        System.out.println(wikipediaContent.getQuery());
+        System.out.println(wikipediaContent.getExtract());
     }
 
     public long getId() {
@@ -31,6 +31,10 @@ public class Artist {
 
     public String getEnwikiTitle() {
         return enwikiTitle;
+    }
+
+    public WikipediaContent getWikipediaContent() {
+        return wikipediaContent;
     }
 
     public MusicBrainzContent getContent() {
