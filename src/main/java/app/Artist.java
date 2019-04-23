@@ -19,20 +19,20 @@ public class Artist {
         MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
         musicBrainzContent = consumer.getContent();
         // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
-        String wikidataId = musicBrainzContent.getWikiDataId();
-        wikipediaContent = createWikipediaContent(wikidataId);
+        wikipediaContent = createWikipediaContent();
     }
 
-    private WikipediaContent createWikipediaContent(String wikidataId) {
-        WikidataContent wikidataContent = createWikidataContent(wikidataId);
-        String enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
-        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
+    private WikipediaContent createWikipediaContent() {
+        String title = createWikipediaTitle();
+        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(title);
         return wikipediaConsumer.getContent();
     }
 
-    private WikidataContent createWikidataContent(String wikidataId) {
-        WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
-        return wikiDataConsumer.getContent();
+    private String createWikipediaTitle() {
+        String wikidataId = musicBrainzContent.getWikiDataId();
+        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
+        WikidataContent content = consumer.getContent();
+        return content.getEnwikiTitle(wikidataId);
     }
 
     public String getMbid() {
