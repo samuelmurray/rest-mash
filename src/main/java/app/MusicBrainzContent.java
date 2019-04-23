@@ -46,6 +46,14 @@ public class MusicBrainzContent {
         }
     }
 
+    private String getUrlFromRelation(MusicBrainzRelation relation) {
+        try {
+            String id = relation.getUrl().lastPartOfUrl();
+            return buildWikiUrl(id);
+        } catch (URISyntaxException e) {
+            return "MISSING";
+        }
+    }
 
     private String buildWikiUrl(String id) {
         return "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=" + id + "&format=json&props=sitelinks";
