@@ -7,6 +7,8 @@ import wikidata.WikidataContent;
 import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
 
+import java.net.URISyntaxException;
+
 public class Artist {
     private final long id;
     private final String mbid;
@@ -26,12 +28,21 @@ public class Artist {
     }
 
     private WikipediaContent createWikipediaContent() {
-        String title = createWikipediaTitle();
-        return WikipediaContentFactory.createFromWikipediaTitle(title);
+        try {
+            String title = createWikipediaTitle();
+            return WikipediaContentFactory.createFromWikipediaTitle(title);
+        } catch (RuntimeException e) {
+            System.err.println(e);
+            return null;
+        } catch (URISyntaxException e) {
+            System.err.println(e);
+            return null;
+        }
     }
 
-    private String createWikipediaTitle() {
+    private String createWikipediaTitle() throws URISyntaxException {
         String wikidataId = musicBrainzContent.getWikidataId();
+        System.out.println(wikidataId);
         WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
         return content.getEnwikiTitle(wikidataId);
     }
@@ -49,6 +60,9 @@ public class Artist {
     }
 
     public String getDescription() {
+        if (wikipediaContent == null) {
+            return "";
+        }
         return wikipediaContent.getExtract();
     }
 }
