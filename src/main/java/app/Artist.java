@@ -32,10 +32,10 @@ public class Artist {
             String title = createWikipediaTitle();
             return WikipediaContentFactory.createFromWikipediaTitle(title);
         } catch (RuntimeException e) {
-            System.err.println(e);
+            System.err.println(String.format("Wikipedia content not created due to RuntimeException: %s", e));
             return null;
         } catch (URISyntaxException e) {
-            System.err.println(e);
+            System.err.println(String.format("Wikipedia content not created due to URISyntaxException: %s", e));
             return null;
         }
     }
