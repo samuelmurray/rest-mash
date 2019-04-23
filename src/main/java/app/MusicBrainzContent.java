@@ -8,6 +8,7 @@ public class MusicBrainzContent {
 
     private String name;
     private Album[] albums;
+    private MusicBrainzRelation[] relations;
 
     public MusicBrainzContent() {
     }
@@ -27,6 +28,14 @@ public class MusicBrainzContent {
 
     public String getName() {
         return name;
+    }
+
+    public MusicBrainzRelation[] getRelations() {
+        return relations;
+    }
+
+    public void setRelations(MusicBrainzRelation[] relations) {
+        this.relations = relations;
     }
 
     public void addCoverArtToAlbums() {
