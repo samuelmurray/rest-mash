@@ -3,11 +3,14 @@ package app;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.net.URISyntaxException;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
 
     private String name;
     private Album[] albums;
+    private MusicBrainzRelation[] relations;
 
     public MusicBrainzContent() {
     }
@@ -29,9 +32,34 @@ public class MusicBrainzContent {
         return name;
     }
 
+    public MusicBrainzRelation[] getRelations() {
+        return relations;
+    }
+
+    public void setRelations(MusicBrainzRelation[] relations) {
+        this.relations = relations;
+    }
+
     public void addCoverArtToAlbums() {
         for (Album album : albums) {
             album.addCoverArt();
+        }
+    }
+
+    public String getWikiDataId() {
+        for (MusicBrainzRelation relation : relations) {
+            if (relation.getType().equals("wikidata")) {
+                return getWikiDataIdFromRelation(relation);
+            }
+        }
+        return "MISSING";
+    }
+
+    private String getWikiDataIdFromRelation(MusicBrainzRelation relation) {
+        try {
+            return relation.getUrl().lastPartOfUrl();
+        } catch (URISyntaxException e) {
+            return "MISSING";
         }
     }
 }
