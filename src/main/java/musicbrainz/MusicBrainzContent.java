@@ -53,7 +53,7 @@ public class MusicBrainzContent {
                 return getWikidataIdFromRelation(relation);
             }
         }
-        return "MISSING";
+        throw new RuntimeException("Wikidata not found");
     }
 
     private String getWikidataIdFromRelation(MusicBrainzRelation relation) {
