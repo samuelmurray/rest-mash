@@ -4,6 +4,7 @@ public class Artist {
     private final long id;
     private final MusicBrainzContent content;
     private final WikidataContent wikidataContent;
+    private final WikipediaContent wikipediaContent;
     private final String enwikiTitle;
 
     public Artist(long id, String mbid) {
@@ -15,6 +16,8 @@ public class Artist {
         WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
         wikidataContent = wikiDataConsumer.getContent();
         enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
+        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
+        wikipediaContent = wikipediaConsumer.getContent();
     }
 
     public long getId() {
@@ -27,6 +30,10 @@ public class Artist {
 
     public String getEnwikiTitle() {
         return enwikiTitle;
+    }
+
+    public WikipediaContent getWikipediaContent() {
+        return wikipediaContent;
     }
 
     public MusicBrainzContent getContent() {
