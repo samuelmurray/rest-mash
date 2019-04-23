@@ -4,7 +4,7 @@ import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
 import wikidata.WikidataContentFactory;
 import wikidata.WikidataContent;
-import wikipedia.WikipediaConsumer;
+import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
 
 public class Artist {
@@ -27,8 +27,8 @@ public class Artist {
 
     private WikipediaContent createWikipediaContent() {
         String title = createWikipediaTitle();
-        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(title);
-        return wikipediaConsumer.getContent();
+        WikipediaContentFactory wikipediaContentFactory = new WikipediaContentFactory(title);
+        return wikipediaContentFactory.getContent();
     }
 
     private String createWikipediaTitle() {

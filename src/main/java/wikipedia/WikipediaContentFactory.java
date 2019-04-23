@@ -2,13 +2,13 @@ package wikipedia;
 
 import org.springframework.web.client.RestTemplate;
 
-public class WikipediaConsumer {
+public class WikipediaContentFactory {
     private static final String urlPrefix = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=true&redirects=true&titles=";
     private RestTemplate restTemplate;
     private WikipediaContent content;
 
 
-    public WikipediaConsumer(String wikipediaTitle) {
+    public WikipediaContentFactory(String wikipediaTitle) {
         restTemplate = new RestTemplate();
         consume(wikipediaTitle);
     }
