@@ -20,7 +20,6 @@ public class WikidataContent {
         Map<String,Object> wikiIdMap = (Map<String,Object>)entities.get(wikidataId);
         Map<String,Object> sitelinks = (Map<String,Object>)wikiIdMap.get("sitelinks");
         Map<String,Object> enwiki = (Map<String,Object>)sitelinks.get("enwiki");
-        System.out.println((String)enwiki.get("title"));
         return (String)enwiki.get("title");
     }
 }
