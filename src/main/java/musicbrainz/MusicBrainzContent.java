@@ -47,20 +47,16 @@ public class MusicBrainzContent {
         }
     }
 
-    public String getWikidataId() {
+    public String getWikidataId() throws URISyntaxException {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikidata")) {
                 return getWikidataIdFromRelation(relation);
             }
         }
-        return "MISSING";
+        throw new RuntimeException("Wikidata not found");
     }
 
-    private String getWikidataIdFromRelation(MusicBrainzRelation relation) {
-        try {
-            return relation.getUrl().lastPartOfUrl();
-        } catch (URISyntaxException e) {
-            return "MISSING";
-        }
+    private String getWikidataIdFromRelation(MusicBrainzRelation relation) throws URISyntaxException {
+        return relation.getUrl().lastPartOfUrl();
     }
 }

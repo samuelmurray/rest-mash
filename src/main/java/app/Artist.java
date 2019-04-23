@@ -1,11 +1,13 @@
 package app;
 
-import musicbrainz.MusicBrainzConsumer;
+import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
-import wikidata.WikidataConsumer;
+import wikidata.WikidataContentFactory;
 import wikidata.WikidataContent;
-import wikipedia.WikipediaConsumer;
+import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
+
+import java.net.URISyntaxException;
 
 public class Artist {
     private final long id;
@@ -22,25 +24,27 @@ public class Artist {
     }
 
     private MusicBrainzContent createMusicBrainzContent(String mbid) {
-        MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        return consumer.getContent();
+        return MusicBrainzContentFactory.createFromMbid(mbid);
     }
 
     private WikipediaContent createWikipediaContent() {
-        String title = createWikipediaTitle();
-        WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(title);
-        return wikipediaConsumer.getContent();
+        try {
+            String title = createWikipediaTitle();
+            return WikipediaContentFactory.createFromWikipediaTitle(title);
+        } catch (RuntimeException e) {
+            System.err.println(String.format("WikipediaContent not created due to RuntimeException: %s", e));
+            return null;
+        } catch (URISyntaxException e) {
+            System.err.println(String.format("WikipediaContent not created due to URISyntaxException: %s", e));
+            return null;
+        }
     }
 
-    private String createWikipediaTitle() {
+    private String createWikipediaTitle() throws URISyntaxException {
         String wikidataId = musicBrainzContent.getWikidataId();
-        WikidataContent content = createWikidataContent(wikidataId);
+        System.out.println(wikidataId);
+        WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
         return content.getEnwikiTitle(wikidataId);
-    }
-
-    private WikidataContent createWikidataContent(String wikidataId) {
-        WikidataConsumer consumer = new WikidataConsumer(wikidataId);
-        return consumer.getContent();
     }
 
     public String getMbid() {
@@ -56,6 +60,9 @@ public class Artist {
     }
 
     public String getDescription() {
+        if (wikipediaContent == null) {
+            return "";
+        }
         return wikipediaContent.getExtract();
     }
 }

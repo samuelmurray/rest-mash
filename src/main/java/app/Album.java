@@ -1,7 +1,7 @@
 package app;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import coverart.CoverArtConsumer;
+import coverart.CoverArtContentFactory;
 import coverart.CoverArtContent;
 import coverart.CoverArtImage;
 
@@ -31,8 +31,7 @@ public class Album {
     }
 
     public void addCoverArt() {
-        CoverArtConsumer consumer = new CoverArtConsumer(mbid);
-        content = consumer.getContent();
+        content = CoverArtContentFactory.createFromMbid(mbid);
     }
 
 
