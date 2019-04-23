@@ -26,7 +26,7 @@ public class CoverArtConsumer {
         }
     }
 
-    private String buildUrl(String mbid) {
+    private static String buildUrl(String mbid) {
         return URL_PREFIX + mbid;
     }
 }
