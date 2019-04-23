@@ -16,10 +16,14 @@ public class Artist {
     public Artist(long id, String mbid) {
         this.id = id;
         this.mbid = mbid;
-        MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
-        musicBrainzContent = consumer.getContent();
+        musicBrainzContent = createMusicBrainzContent(mbid);
         // musicBrainzContent.addCoverArtToAlbums();  // FIXME: Remove before merge
         wikipediaContent = createWikipediaContent();
+    }
+
+    private MusicBrainzContent createMusicBrainzContent(String mbid) {
+        MusicBrainzConsumer consumer = new MusicBrainzConsumer(mbid);
+        return consumer.getContent();
     }
 
     private WikipediaContent createWikipediaContent() {
