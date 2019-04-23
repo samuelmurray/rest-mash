@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URISyntaxException;
+import java.util.NoSuchElementException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
@@ -53,7 +54,7 @@ public class MusicBrainzContent {
                 return getLastPartOfRelationUrl(relation);
             }
         }
-        throw new RuntimeException("Wikidata not found");
+        throw new NoSuchElementException("Wikidata not found");
     }
 
     public String getWikipediaTitle() throws URISyntaxException {
@@ -62,7 +63,7 @@ public class MusicBrainzContent {
                 return getLastPartOfRelationUrl(relation);
             }
         }
-        throw new RuntimeException("Wikipedia relation not found");
+        throw new NoSuchElementException("Wikipedia relation not found");
     }
 
     private String getLastPartOfRelationUrl(MusicBrainzRelation relation) throws URISyntaxException {

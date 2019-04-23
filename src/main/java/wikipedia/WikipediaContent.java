@@ -3,6 +3,7 @@ package wikipedia;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WikipediaContent {
@@ -24,6 +25,6 @@ public class WikipediaContent {
                 return (String) valueAsMap.get("extract");
             }
         }
-        throw new RuntimeException("Extract missing");
+        throw new NoSuchElementException("Extract missing");
     }
 }

@@ -8,6 +8,7 @@ import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
 
 import java.net.URISyntaxException;
+import java.util.NoSuchElementException;
 
 public class Artist {
     private final long id;
@@ -19,7 +20,7 @@ public class Artist {
         this.id = id;
         this.mbid = mbid;
         musicBrainzContent = createMusicBrainzContent(mbid);
-        // musicBrainzContent.addCoverArtToAlbums();
+        musicBrainzContent.addCoverArtToAlbums();
         wikipediaContent = createWikipediaContent();
     }
 
@@ -31,8 +32,8 @@ public class Artist {
         try {
             String title = createWikipediaTitle();
             return WikipediaContentFactory.createFromWikipediaTitle(title);
-        } catch (RuntimeException e) {
-            System.err.println(String.format("WikipediaContent not created due to RuntimeException: %s", e));
+        } catch (NoSuchElementException e) {
+            System.err.println(String.format("WikipediaContent not created due to NoSuchElementException: %s", e));
             return null;
         } catch (URISyntaxException e) {
             System.err.println(String.format("WikipediaContent not created due to URISyntaxException: %s", e));
@@ -43,7 +44,7 @@ public class Artist {
     private String createWikipediaTitle() throws URISyntaxException {
         try {
             return createWikipediaTitleDirectly();
-        } catch (RuntimeException e) {
+        } catch (NoSuchElementException e) {
             return createWikipediaTitleFromWikidata();
         }
     }
