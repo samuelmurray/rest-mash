@@ -24,11 +24,15 @@ public class Artist {
     }
 
     private WikipediaContent createWikipediaContent(String wikidataId) {
-        WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
-        WikidataContent wikidataContent = wikiDataConsumer.getContent();
+        WikidataContent wikidataContent = createWikidataContent(wikidataId);
         String enwikiTitle = wikidataContent.getEnwikiTitle(wikidataId);
         WikipediaConsumer wikipediaConsumer = new WikipediaConsumer(enwikiTitle);
         return wikipediaConsumer.getContent();
+    }
+
+    private WikidataContent createWikidataContent(String wikidataId) {
+        WikidataConsumer wikiDataConsumer = new WikidataConsumer(wikidataId);
+        return wikiDataConsumer.getContent();
     }
 
     public String getMbid() {
