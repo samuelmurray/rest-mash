@@ -22,7 +22,7 @@ public class WikidataContentFactory {
         return content;
     }
 
-    private String buildUrl(String wikidataId) {
+    private static String buildUrl(String wikidataId) {
         return urlPrefix + wikidataId + urlSuffix;
     }
 }

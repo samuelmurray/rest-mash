@@ -21,7 +21,7 @@ public class WikipediaContentFactory {
         return content;
     }
 
-    private String buildUrl(String wikipediaTitle) {
+    private static String buildUrl(String wikipediaTitle) {
         return urlPrefix + wikipediaTitle;  // TODO: This seems to work without URL encoding the title
     }
 }
