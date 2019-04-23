@@ -27,8 +27,7 @@ public class Artist {
 
     private WikipediaContent createWikipediaContent() {
         String title = createWikipediaTitle();
-        WikipediaContentFactory wikipediaContentFactory = new WikipediaContentFactory(title);
-        return wikipediaContentFactory.getContent();
+        return WikipediaContentFactory.createFromWikipediaTitle(title);
     }
 
     private String createWikipediaTitle() {
