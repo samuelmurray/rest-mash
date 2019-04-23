@@ -1,4 +1,4 @@
-package app;
+package wikidata;
 
 import org.springframework.web.client.RestTemplate;
 

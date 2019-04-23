@@ -1,5 +1,8 @@
 package app;
 
+import wikidata.WikidataConsumer;
+import wikidata.WikidataContent;
+
 public class Artist {
     private final long id;
     private final MusicBrainzContent content;
