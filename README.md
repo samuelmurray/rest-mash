@@ -28,6 +28,66 @@ Either way you run the application, it will start a service on `localhost:8080`.
 The controller handles requests to `/artist`, and requires a MBID to be given. 
 To search for an artist with MBID _abc-123_, enter http://localhost:8080/artist?mbid=abc-123 in your web browser.
 
+### Example
+For example, http://localhost:8080/artist?mbid=aa2497f9-d4b3-4d03-9a1c-bb7d76acc1b7 gives information on a Swedish band _In Solitude_.
+
+```json
+{
+  mbid: "aa2497f9-d4b3-4d03-9a1c-bb7d76acc1b7",
+  name: "In Solitude",
+  description: "<p><b>In Solitude</b> was a Swedish heavy metal band from Uppsala, Sweden. </p>",
+  albums: [
+    {
+      title: "The World.The Flesh.The Devil",
+      images: null,
+      id: "4de7f50b-0a20-47bd-b29b-67568d1a866d"
+    },
+    {
+      title: "Sister",
+      images: [
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296169384.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296172295.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296174919.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296176554.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296180315.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296181666.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296184332.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296187337.jpg"
+        },
+        {
+          image: "http://coverartarchive.org/release/38c8b91d-ae41-4f4b-ba45-8d0259f97759/13296189168.jpg"
+        }
+      ],
+      id: "8e76ab42-d5ca-402d-8728-1f7fe85fdf41"
+    },
+    {
+      title: "In Solitude",
+      images: [
+        {
+          image: "http://coverartarchive.org/release/41c2af52-cd47-44c9-a081-ef0840887995/6856826890.jpg"
+        }
+      ],
+      id: "d8009340-8afc-301e-955c-6cd18a94bbaa"
+    }
+  ]
+}
+```
+
 ## Tests
 There is a suite of tests in `src/test/java`. In order to run these, use Maven in the project root:
 
