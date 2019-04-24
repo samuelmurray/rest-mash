@@ -24,6 +24,10 @@ $ java -jar target/gs-rest-service-0.1.0.jar
 
 This will run all tests prior to building the JAR, which might take a while - see Tests section below.
 
+Either way you run the application, it will start a service on `localhost:8080`. 
+The controller handles requests to `/artist`, and requires a MBID to be given. 
+To search for an artist with MBID _abc-123_, enter http://localhost:8080/artist?mbid=abc-123 in your web browser.
+
 ## Tests
 There is a suite of tests in `src/test/java`. In order to run these, use Maven in the project root:
 
