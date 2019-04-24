@@ -9,7 +9,7 @@ script:
   - mvn test
 
 before_deploy:
-  - docker build -t samuelmurray/rest-mash .
+  - docker build -t samuelmurray/rest-mash:latest .
 
 deploy:
   provider: script
