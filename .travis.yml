@@ -3,16 +3,5 @@ os:
 
 language: java
 
-services:
-  - docker
 script:
   - mvn test
-
-before_deploy:
-  - docker build -t samuelmurray/rest-mash:latest .
-
-deploy:
-  provider: script
-  script: docker push samuelmurray/rest-mash:latest
-  on:
-    branch: master
