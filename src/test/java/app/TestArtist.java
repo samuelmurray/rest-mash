@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
-public class TestArtist {
+class TestArtist {
     @Test
     void testGetMbid() {
         long id = 0L;

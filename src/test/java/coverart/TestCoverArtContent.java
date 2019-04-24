@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
-public class TestCoverArtContent {
+class TestCoverArtContent {
     @Test
-    public void testGetImagesDallas() {
+    void testGetImagesDallas() {
         String id = "2c67cccd-3412-474d-8864-d1e66d7ae1d9";
         CoverArtContent content = CoverArtContentFactory.createFromMbid(id);
         CoverArtImage[] images = content.getImages();
@@ -16,19 +16,19 @@ public class TestCoverArtContent {
     }
 
     @Test
-    public void testGetImagesNonExistent() {
+    void testGetImagesNonExistent() {
         String id = "60c826fb-8853-3796-8ff2-16c35f362ec9";
         assertNull(CoverArtContentFactory.createFromMbid(id));
     }
 
     @Test
-    public void testGetImagesNull() {
+    void testGetImagesNull() {
         CoverArtContent content = new CoverArtContent();
         assertNull(content.getImages());
     }
 
     @Test
-    public void testGetImages() {
+    void testGetImages() {
         CoverArtContent content = new CoverArtContent();
         CoverArtImage image = new CoverArtImage();
         CoverArtImage[] images = new CoverArtImage[]{image};

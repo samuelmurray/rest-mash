@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestMusicBrainzContent {
+class TestMusicBrainzContent {
 
     @Test
     void testContentFactoryName() {

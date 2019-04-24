@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
 
-public class TestWikipediaContent {
+class TestWikipediaContent {
 
     @Test
-    public void testGetExtractVeronicaMaggio() {
+    void testGetExtractVeronicaMaggio() {
         String title = "Veronica Maggio";
         WikipediaContent content = WikipediaContentFactory.createFromWikipediaTitle(title);
         String expectedSubString = "Veronica Sandra Karin Maggio";
@@ -20,7 +20,7 @@ public class TestWikipediaContent {
     }
 
     @Test
-    public void testGetExtractSamuRuotsalainen() {
+    void testGetExtractSamuRuotsalainen() {
         // Artist has no wikipedia page
         String title = "Samu Ruotsalainen";
         WikipediaContent content = WikipediaContentFactory.createFromWikipediaTitle(title);
@@ -28,13 +28,13 @@ public class TestWikipediaContent {
     }
 
     @Test
-    public void testGetQueryNull() {
+    void testGetQueryNull() {
         WikipediaContent content = new WikipediaContent();
         assertNull(content.getQuery());
     }
 
     @Test
-    public void testGetQuery() {
+    void testGetQuery() {
         WikipediaContent content = new WikipediaContent();
         Map<String, Object> query = new HashMap<>();
         query.put("Key", null);

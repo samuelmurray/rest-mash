@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 
 import static org.junit.Assert.*;
 
-public class TestMusicBrainzUrl {
+class TestMusicBrainzUrl {
 
     @Test
     void testGetResourceNull() {
