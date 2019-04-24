@@ -15,3 +15,5 @@ before_deploy:
 deploy:
   provider: script
   script: docker push samuelmurray/rest-mash:latest
+  on:
+    branch: master
