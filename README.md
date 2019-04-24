@@ -108,3 +108,7 @@ $ mvn test
 Note that there are both unit tests and integration tests, and so running all tests might take a while, and requires an internet connection.
 A future improvement - apart from checking more corner cases - would be to separate unit tests and integration tests.
 Some features could be tested with mocking, to speed up tests and not rely on third party APIs.
+
+## References
+This project served as a practice for me, in Java, Maven and Spring Boot. I based the structure on two tutorials from spring.io: 
+one on [building a REST service](https://spring.io/guides/gs/rest-service/) and one on [consuming an existing service](https://spring.io/guides/gs/consuming-rest/).
