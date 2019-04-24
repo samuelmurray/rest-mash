@@ -3,8 +3,8 @@ package wikidata;
 import org.springframework.web.client.RestTemplate;
 
 public class WikidataContentFactory {
-    private static final String urlPrefix = "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=";
-    private static final String urlSuffix = "&format=json&props=sitelinks";
+    private static final String URL_PREFIX = "https://www.wikidata.org/w/api.php?action=wbgetentities&ids=";
+    private static final String URL_SUFFIX = "&format=json&props=sitelinks";
 
     private WikidataContentFactory() {
     }
@@ -16,6 +16,6 @@ public class WikidataContentFactory {
     }
 
     private static String buildUrl(String wikidataId) {
-        return urlPrefix + wikidataId + urlSuffix;
+        return URL_PREFIX + wikidataId + URL_SUFFIX;
     }
 }

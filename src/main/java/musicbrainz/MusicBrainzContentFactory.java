@@ -3,8 +3,8 @@ package musicbrainz;
 import org.springframework.web.client.RestTemplate;
 
 public class MusicBrainzContentFactory {
-    private static final String urlPrefix = "http://musicbrainz.org/ws/2/artist/";
-    private static final String urlSuffix = "?&fmt=json&inc=url-rels+release-groups";
+    private static final String URL_PREFIX = "http://musicbrainz.org/ws/2/artist/";
+    private static final String URL_SUFFIX = "?&fmt=json&inc=url-rels+release-groups";
 
     private MusicBrainzContentFactory() {
     }
@@ -16,6 +16,6 @@ public class MusicBrainzContentFactory {
     }
 
     private static String buildUrl(String mbid) {
-        return urlPrefix + mbid + urlSuffix;
+        return URL_PREFIX + mbid + URL_SUFFIX;
     }
 }
