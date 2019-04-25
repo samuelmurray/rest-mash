@@ -1,8 +1,9 @@
 package com.restmash.wikipedia;
 
-import org.springframework.web.client.RestTemplate;
 import com.restmash.wikidata.WikidataContent;
 import com.restmash.wikidata.WikidataContentFactory;
+
+import org.springframework.web.client.RestTemplate;
 
 public class WikipediaContentFactory {
     private static final String URL_PREFIX = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=true&redirects=true&titles=";
