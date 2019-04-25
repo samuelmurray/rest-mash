@@ -22,20 +22,21 @@ You can start the application either using Docker or by cloning the repository a
 This starts a service which you can access in a web browser. 
 
 ### Docker
-We provide a docker container for this project - samuelmurray/rest-mash. Run it with the following command:
+We provide a Docker container for this project called _samuelmurray/rest-mash_. Run it with the following command:
+
 ```
 $ docker run -p 8080:8080 samuelmurray/rest-mash:latest
 ``` 
 
 ### Maven
-First, clone the repository.
+To run with Maven, first, clone the repository.
 
 ```
 $ git clone git@github.com:samuelmurray/rest-mash.git
 $ cd rest-mash
 ```
 
-To run the code, we use Maven and Spring Boot. It can either be run directly:
+To run the code, we use Maven and Spring Boot. It can be run directly:
 
 ```
 $ mvn spring-boot:run
@@ -57,6 +58,7 @@ To search for an artist with MBID _abc-123_, go to http://localhost:8080/artist?
 
 ### Example
 For example, http://localhost:8080/artist?mbid=aa2497f9-d4b3-4d03-9a1c-bb7d76acc1b7 retrieves information on a Swedish band _In Solitude_.
+The output json is displayed below.
 
 ```json
 {
@@ -116,7 +118,8 @@ For example, http://localhost:8080/artist?mbid=aa2497f9-d4b3-4d03-9a1c-bb7d76acc
 ```
 
 ## Tests
-There is a suite of tests in `src/test/java`. In order to run these, use Maven in the project root:
+There is a suite of tests in `src/test/java`. 
+In order to run these, use Maven in the project root:
 
 ```
 $ mvn test
@@ -127,5 +130,6 @@ A future improvement - apart from checking more corner cases - would be to separ
 Some features could be tested with mocking, to speed up tests and not rely on third party APIs.
 
 ## References
-This project served as a practice for me, in Java, Maven and Spring Boot. I based the structure on two tutorials from spring.io: 
+This project served as an exercise for me, in Java, Maven, Spring Boot and Docker. 
+I based the structure on two tutorials from spring.io: 
 one on [building a REST service](https://spring.io/guides/gs/rest-service/) and one on [consuming an existing service](https://spring.io/guides/gs/consuming-rest/).
