@@ -130,6 +130,16 @@ Note that there are both unit tests and integration tests, and so running all te
 A future improvement - apart from checking more corner cases - would be to separate unit tests and integration tests.
 Some features could be tested with mocking, to speed up tests and not rely on third party APIs.
 
+## Future work
+The code is lacking some error handling. 
+Concretely, no mapping for `/error` is made.
+So if a user e.g. inputs a non-existing mbid, they are presented the default "Whitelabel Error Page".
+This would also be the case if another API (MusicBrainz etc.) returns an unexpected response. 
+
+As mentioned above, the test suite should be more exhaustive, and should distinguish unit tests and integration tests. 
+It now suffers from the obvious downside that it relies on static responses from the other APIs.
+For example, some tests will fail if a specific artist's wikipedia description is modified.
+
 ## References
 This project served as an exercise for me, in Java, Maven, Spring Boot and Docker. 
 I based the structure on two tutorials from spring.io: 
