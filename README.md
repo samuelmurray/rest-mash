@@ -19,6 +19,8 @@ $ brew install maven
 However, all tests run successfully on Linux and Mac using TravisCI.
 
 ## Run
+You can start the application either using Docker or by cloning the repository and running the code with Maven. 
+This starts a service which you can access in a web browser. 
 
 ### Docker
 We provide a docker container for this project - samuelmurray/rest-mash. Run it with the following command:
