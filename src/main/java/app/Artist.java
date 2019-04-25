@@ -2,8 +2,6 @@ package app;
 
 import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
-import wikidata.WikidataContentFactory;
-import wikidata.WikidataContent;
 import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
 
@@ -47,28 +45,28 @@ public class Artist {
 
     private WikipediaContent createWikipediaContent() {
         try {
-            String title = createWikipediaTitle();
-            return WikipediaContentFactory.createFromWikipediaTitle(title);
-        } catch (NoSuchElementException e) {
-            System.err.println(String.format("WikipediaContent not created due to NoSuchElementException: %s", e));
-            return null;
-        } catch (URISyntaxException e) {
-            System.err.println(String.format("WikipediaContent not created due to URISyntaxException: %s", e));
+            return createWikipediaContentSafe();
+        } catch (NoSuchElementException | URISyntaxException e) {
+            System.err.println(String.format("WikipediaContent not created due to Exception: %s", e));
             return null;
         }
     }
 
-    private String createWikipediaTitle() throws URISyntaxException {
+    private WikipediaContent createWikipediaContentSafe() throws URISyntaxException {
         try {
-            return musicBrainzContent.getWikipediaTitle();
+            return createWikipediaContentFromTitle();
         } catch (NoSuchElementException e) {
-            return createWikipediaTitleFromWikidata();
+            return createWikipediaContentFromId();
         }
     }
 
-    private String createWikipediaTitleFromWikidata() throws URISyntaxException {
+    private WikipediaContent createWikipediaContentFromTitle() throws URISyntaxException {
+        String title = musicBrainzContent.getWikipediaTitle();
+        return WikipediaContentFactory.createFromWikipediaTitle(title);
+    }
+
+    private WikipediaContent createWikipediaContentFromId() throws URISyntaxException {
         String wikidataId = musicBrainzContent.getWikidataId();
-        WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
-        return content.getEnwikiTitle(wikidataId);
+        return WikipediaContentFactory.createFromWikidataId(wikidataId);
     }
 }

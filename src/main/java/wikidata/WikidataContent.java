@@ -16,7 +16,7 @@ public class WikidataContent {
         this.entities = entities;
     }
 
-    public String getEnwikiTitle(String wikidataId) {
+    public String getWikipediaTitle(String wikidataId) {
         // FIXME: Unchecked casts; no error handling
         Map<String,Object> wikiIdMap = (Map<String,Object>)entities.get(wikidataId);
         Map<String,Object> sitelinks = (Map<String,Object>)wikiIdMap.get("sitelinks");

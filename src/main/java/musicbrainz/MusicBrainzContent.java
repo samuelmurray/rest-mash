@@ -45,20 +45,21 @@ public class MusicBrainzContent {
     }
 
     public String getWikidataId() throws URISyntaxException {
-        for (MusicBrainzRelation relation : relations) {
-            if (relation.getType().equals("wikidata")) {
-                return relation.getLastPartOfUrl();
-            }
-        }
-        throw new NoSuchElementException("Wikidata not found");
+        String type = "wikidata";
+        return getLastPartOfUrlForType(type);
     }
 
     public String getWikipediaTitle() throws URISyntaxException {
+        String type = "wikipedia";
+        return getLastPartOfUrlForType(type);
+    }
+
+    private String getLastPartOfUrlForType(String type) throws URISyntaxException {
         for (MusicBrainzRelation relation : relations) {
-            if (relation.getType().equals("wikipedia")) {
+            if (relation.getType().equals(type)) {
                 return relation.getLastPartOfUrl();
             }
         }
-        throw new NoSuchElementException("Wikipedia relation not found");
+        throw new NoSuchElementException(String.format("Relation \"%s\" not found", type));
     }
 }
