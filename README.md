@@ -5,8 +5,9 @@ An implementation of a REST API that wraps multiple other APIs. Written in Java 
 [![Build Status](https://travis-ci.com/samuelmurray/rest-mash.svg?token=metTeQBqcky3teaepvwx&branch=master)](https://travis-ci.com/samuelmurray/rest-mash)
 
 ## Goal
-The aim of this project is to make a REST based API that - given a MusicBrainz Identifier (MBID) - returns an artists name, Wikipedia description, and list of albums with links to cover images.
-This is done by calling other public APIs: [MusicBrainz](http://musicbrainz.org/ws/2), [Cover Art Archive](http://coverartarchive.org/), [Wikidata](https://www.wikidata.org/w/api.php) and [Wikipedia](https://en.wikipedia.org/w/api.php).
+The aim of this project is to make a REST based API that given a MusicBrainz Identifier (MBID) returns an artist's name, Wikipedia description, and list of albums with links to cover images.
+This is done by calling other public APIs: 
+[MusicBrainz](http://musicbrainz.org/ws/2), [Cover Art Archive](http://coverartarchive.org/), [Wikidata](https://www.wikidata.org/w/api.php) and [Wikipedia](https://en.wikipedia.org/w/api.php).
 
 ## Run
 You can start the application either using Docker or by cloning the repository and running the code with Maven. 
@@ -23,7 +24,8 @@ $ brew install maven
 ```
 
 ### Docker
-We provide a Docker container for this project called _samuelmurray/rest-mash_. Run it with the following command:
+We provide a Docker container for this project called _samuelmurray/rest-mash_. 
+Run it with the following command:
 
 ```
 $ docker run -p 8080:8080 samuelmurray/rest-mash:latest
@@ -37,7 +39,8 @@ $ git clone git@github.com:samuelmurray/rest-mash.git
 $ cd rest-mash
 ```
 
-To run the code, we use Maven and Spring Boot. It can be run directly:
+To run the code, we use Maven and Spring Boot. 
+It can be run directly:
 
 ```
 $ mvn spring-boot:run
