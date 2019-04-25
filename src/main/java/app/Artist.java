@@ -11,13 +11,11 @@ import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 
 public class Artist {
-    private final long id;
     private final String mbid;
     private final MusicBrainzContent musicBrainzContent;
     private final WikipediaContent wikipediaContent;
 
-    public Artist(long id, String mbid) {
-        this.id = id;
+    public Artist(String mbid) {
         this.mbid = mbid;
         musicBrainzContent = createMusicBrainzContent(mbid);
         musicBrainzContent.addCoverArtToAlbums();
