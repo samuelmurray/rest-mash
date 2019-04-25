@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class CoverArtContent {
     private CoverArtImage[] images;
 
-    public void setImages(CoverArtImage[] images) {
-        this.images = images;
-    }
-
     public CoverArtImage[] getImages() {
         return images;
+    }
+
+    public void setImages(CoverArtImage[] images) {
+        this.images = images;
     }
 }

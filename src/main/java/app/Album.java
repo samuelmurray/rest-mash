@@ -10,21 +10,21 @@ public class Album {
     private String mbid;
     private CoverArtContent content;
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getTitle() {
-        return title;
+    public String getMbid() {
+        return mbid;
     }
 
     @JsonProperty(value = "id")
     public void setMbid(String mbid) {
         this.mbid = mbid;
-    }
-
-    public String getMbid() {
-        return mbid;
     }
 
     public void addCoverArt() {

@@ -22,6 +22,25 @@ public class Artist {
         wikipediaContent = createWikipediaContent();
     }
 
+    public String getMbid() {
+        return mbid;
+    }
+
+    public String getName() {
+        return musicBrainzContent.getName();
+    }
+
+    public Album[] getAlbums() {
+        return musicBrainzContent.getAlbums();
+    }
+
+    public String getDescription() {
+        if (wikipediaContent == null) {
+            return "";
+        }
+        return wikipediaContent.getExtract();
+    }
+
     private MusicBrainzContent createMusicBrainzContent(String mbid) {
         return MusicBrainzContentFactory.createFromMbid(mbid);
     }
@@ -51,24 +70,5 @@ public class Artist {
         String wikidataId = musicBrainzContent.getWikidataId();
         WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
         return content.getEnwikiTitle(wikidataId);
-    }
-
-    public String getMbid() {
-        return mbid;
-    }
-
-    public String getName() {
-        return musicBrainzContent.getName();
-    }
-
-    public Album[] getAlbums() {
-        return musicBrainzContent.getAlbums();
-    }
-
-    public String getDescription() {
-        if (wikipediaContent == null) {
-            return "";
-        }
-        return wikipediaContent.getExtract();
     }
 }
