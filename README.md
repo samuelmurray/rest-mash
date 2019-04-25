@@ -49,12 +49,13 @@ $ java -jar target/gs-rest-service-0.1.0.jar
 
 This will run all tests prior to building the JAR, which might take a while - see Tests section below.
 
+### Service
 Either way you run the application, it will start a service on `localhost:8080`.
-The controller handles requests to `/artist`, and requires a MBID to be given.
-To search for an artist with MBID _abc-123_, enter http://localhost:8080/artist?mbid=abc-123 in your web browser.
+The controller handles requests to `/artist`, and requires an MBID to be given.
+To search for an artist with MBID _abc-123_, go to http://localhost:8080/artist?mbid=abc-123 in your web browser.
 
 ### Example
-For example, http://localhost:8080/artist?mbid=aa2497f9-d4b3-4d03-9a1c-bb7d76acc1b7 gives information on a Swedish band _In Solitude_.
+For example, http://localhost:8080/artist?mbid=aa2497f9-d4b3-4d03-9a1c-bb7d76acc1b7 retrieves information on a Swedish band _In Solitude_.
 
 ```json
 {
