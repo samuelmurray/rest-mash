@@ -8,18 +8,19 @@ An implementation of a REST API that wraps multiple other APIs. Written in Java 
 The aim of this project is to make a REST based API that - given a MusicBrainz Identifier (MBID) - returns an artists name, Wikipedia description, and list of albums with links to cover images.
 This is done by calling other public APIs: [MusicBrainz](http://musicbrainz.org/ws/2), [Cover Art Archive](http://coverartarchive.org/), [Wikidata](https://www.wikidata.org/w/api.php) and [Wikipedia](https://en.wikipedia.org/w/api.php).
 
-## Requirements
-Running the code requires either Docker or Maven and Java 8. On macOS, these can be installed using [Homebrew](https://brew.sh/):
+## Run
+You can start the application either using Docker or by cloning the repository and running the code with Maven. 
+This starts a service which you can access in a web browser. 
+
+### Requirements
+Running the code requires either Docker or Maven and Java 8. 
+On macOS, these can be installed using [Homebrew](https://brew.sh/):
 
 ```
 $ brew cask install docker
 $ brew cask install java8
 $ brew install maven
 ```
-
-## Run
-You can start the application either using Docker or by cloning the repository and running the code with Maven. 
-This starts a service which you can access in a web browser. 
 
 ### Docker
 We provide a Docker container for this project called _samuelmurray/rest-mash_. Run it with the following command:
