@@ -46,11 +46,8 @@ public class Artist {
     private WikipediaContent createWikipediaContent() {
         try {
             return createWikipediaContentSafe();
-        } catch (NoSuchElementException e) {
-            System.err.println(String.format("WikipediaContent not created due to NoSuchElementException: %s", e));
-            return null;
-        } catch (URISyntaxException e) {
-            System.err.println(String.format("WikipediaContent not created due to URISyntaxException: %s", e));
+        } catch (NoSuchElementException | URISyntaxException e) {
+            System.err.println(String.format("WikipediaContent not created due to Exception: %s", e));
             return null;
         }
     }
