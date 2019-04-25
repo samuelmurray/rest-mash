@@ -9,14 +9,13 @@ The aim of this project is to make a REST based API that - given a MusicBrainz I
 This is done by calling other public APIs: [MusicBrainz](http://musicbrainz.org/ws/2), [Cover Art Archive](http://coverartarchive.org/), [Wikidata](https://www.wikidata.org/w/api.php) and [Wikipedia](https://en.wikipedia.org/w/api.php).
 
 ## Requirements
-The code is tested with Maven 3.6, and runs on Java 8, as specified in `pom.xml`. On macOS, this can be installed using [Homebrew](https://brew.sh/):
+Running the code requires either Docker or Maven and Java 8. On macOS, these can be installed using [Homebrew](https://brew.sh/):
 
 ```
+$ brew cask install docker
 $ brew cask install java8
 $ brew install maven
 ```
-
-However, all tests run successfully on Linux and Mac using TravisCI.
 
 ## Run
 You can start the application either using Docker or by cloning the repository and running the code with Maven. 
