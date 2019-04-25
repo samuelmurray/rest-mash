@@ -10,16 +10,20 @@ public class WikipediaContentFactory {
     private WikipediaContentFactory() {
     }
 
-    public static WikipediaContent createFromWikidataId(String wikidataId) {
-        WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
-        String wikipediaTitle = content.getEnwikiTitle(wikidataId);
-        return createFromWikipediaTitle(wikipediaTitle);
-    }
-
     public static WikipediaContent createFromWikipediaTitle(String wikipediaTitle) {
         RestTemplate restTemplate = new RestTemplate();
         String url = buildUrl(wikipediaTitle);
         return restTemplate.getForObject(url, WikipediaContent.class);
+    }
+
+    public static WikipediaContent createFromWikidataId(String wikidataId) {
+        String wikipediaTitle = createTitleFromWikidataId(wikidataId);
+        return createFromWikipediaTitle(wikipediaTitle);
+    }
+
+    private static String createTitleFromWikidataId(String wikidataId) {
+        WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
+        return content.getEnwikiTitle(wikidataId);
     }
 
     private static String buildUrl(String wikipediaTitle) {
