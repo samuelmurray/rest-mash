@@ -13,9 +13,6 @@ public class MusicBrainzContent {
     private Album[] albums;
     private MusicBrainzRelation[] relations;
 
-    public MusicBrainzContent() {
-    }
-
     public Album[] getAlbums() {
         return albums;
     }

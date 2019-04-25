@@ -7,9 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CoverArtImage {
     private String url;
 
-    public CoverArtImage() {
-    }
-
     @JsonProperty(value = "image", defaultValue = "MISSING")
     public void setUrl(String url) {
         this.url = url;

@@ -10,9 +10,6 @@ public class Album {
     private String mbid;
     private CoverArtContent content;
 
-    public Album() {
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
