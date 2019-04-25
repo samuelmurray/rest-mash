@@ -9,7 +9,6 @@ import java.util.NoSuchElementException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
-
     private String name;
     private Album[] albums;
     private MusicBrainzRelation[] relations;
