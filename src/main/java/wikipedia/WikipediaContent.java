@@ -18,6 +18,7 @@ public class WikipediaContent {
     }
 
     public String getExtract() {
+        // FIXME: Unchecked casts; no error handling
         Map<String, Object> pages = (Map<String, Object>) query.get("pages");
         for (Object value : pages.values()) {
             Map<String, Object> valueAsMap = (Map<String, Object>) value;
