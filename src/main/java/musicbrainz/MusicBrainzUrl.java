@@ -18,6 +18,7 @@ public class MusicBrainzUrl {
     }
 
     public String lastPartOfUrl() throws URISyntaxException {
+        // FIXME: Error handling for if resource is not set
         URI uri = new URI(getResource());
         String[] segments = uri.getPath().split("/");
         return segments[segments.length - 1];

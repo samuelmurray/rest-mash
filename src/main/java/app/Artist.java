@@ -2,8 +2,6 @@ package app;
 
 import musicbrainz.MusicBrainzContentFactory;
 import musicbrainz.MusicBrainzContent;
-import wikidata.WikidataContentFactory;
-import wikidata.WikidataContent;
 import wikipedia.WikipediaContentFactory;
 import wikipedia.WikipediaContent;
 
@@ -11,48 +9,15 @@ import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 
 public class Artist {
-    private final long id;
     private final String mbid;
     private final MusicBrainzContent musicBrainzContent;
     private final WikipediaContent wikipediaContent;
 
-    public Artist(long id, String mbid) {
-        this.id = id;
+    public Artist(String mbid) {
         this.mbid = mbid;
         musicBrainzContent = createMusicBrainzContent(mbid);
         musicBrainzContent.addCoverArtToAlbums();
         wikipediaContent = createWikipediaContent();
-    }
-
-    private MusicBrainzContent createMusicBrainzContent(String mbid) {
-        return MusicBrainzContentFactory.createFromMbid(mbid);
-    }
-
-    private WikipediaContent createWikipediaContent() {
-        try {
-            String title = createWikipediaTitle();
-            return WikipediaContentFactory.createFromWikipediaTitle(title);
-        } catch (NoSuchElementException e) {
-            System.err.println(String.format("WikipediaContent not created due to NoSuchElementException: %s", e));
-            return null;
-        } catch (URISyntaxException e) {
-            System.err.println(String.format("WikipediaContent not created due to URISyntaxException: %s", e));
-            return null;
-        }
-    }
-
-    private String createWikipediaTitle() throws URISyntaxException {
-        try {
-            return musicBrainzContent.getWikipediaTitle();
-        } catch (NoSuchElementException e) {
-            return createWikipediaTitleFromWikidata();
-        }
-    }
-
-    private String createWikipediaTitleFromWikidata() throws URISyntaxException {
-        String wikidataId = musicBrainzContent.getWikidataId();
-        WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
-        return content.getEnwikiTitle(wikidataId);
     }
 
     public String getMbid() {
@@ -72,5 +37,36 @@ public class Artist {
             return "";
         }
         return wikipediaContent.getExtract();
+    }
+
+    private MusicBrainzContent createMusicBrainzContent(String mbid) {
+        return MusicBrainzContentFactory.createFromMbid(mbid);
+    }
+
+    private WikipediaContent createWikipediaContent() {
+        try {
+            return createWikipediaContentSafe();
+        } catch (NoSuchElementException | URISyntaxException e) {
+            System.err.println(String.format("WikipediaContent not created due to Exception: %s", e));
+            return null;
+        }
+    }
+
+    private WikipediaContent createWikipediaContentSafe() throws URISyntaxException {
+        try {
+            return createWikipediaContentFromTitle();
+        } catch (NoSuchElementException e) {
+            return createWikipediaContentFromId();
+        }
+    }
+
+    private WikipediaContent createWikipediaContentFromTitle() throws URISyntaxException {
+        String title = musicBrainzContent.getWikipediaTitle();
+        return WikipediaContentFactory.createFromWikipediaTitle(title);
+    }
+
+    private WikipediaContent createWikipediaContentFromId() throws URISyntaxException {
+        String wikidataId = musicBrainzContent.getWikidataId();
+        return WikipediaContentFactory.createFromWikidataId(wikidataId);
     }
 }

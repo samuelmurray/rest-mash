@@ -14,14 +14,14 @@ class TestWikidataContent {
     void testGetEnwikiTitleVeronicaMaggio() {
         String id = "Q260597";
         WikidataContent content = WikidataContentFactory.createFromWikidataId(id);
-        assertEquals("Veronica Maggio", content.getEnwikiTitle(id));
+        assertEquals("Veronica Maggio", content.getWikipediaTitle(id));
     }
 
     @Test
     void testGetEnwikiTitleNirvana() {
         String id = "Q11649";
         WikidataContent content = WikidataContentFactory.createFromWikidataId(id);
-        assertEquals("Nirvana (band)", content.getEnwikiTitle(id));
+        assertEquals("Nirvana (band)", content.getWikipediaTitle(id));
     }
 
     @Test
