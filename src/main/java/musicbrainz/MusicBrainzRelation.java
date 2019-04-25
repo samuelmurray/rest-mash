@@ -2,6 +2,8 @@ package musicbrainz;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.net.URISyntaxException;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzRelation {
     private String type;
@@ -21,5 +23,9 @@ public class MusicBrainzRelation {
 
     public void setUrl(MusicBrainzUrl url) {
         this.url = url;
+    }
+
+    public String getLastPartOfUrl() throws URISyntaxException {
+        return url.lastPartOfUrl();
     }
 }

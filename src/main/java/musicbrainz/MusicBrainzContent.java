@@ -47,7 +47,7 @@ public class MusicBrainzContent {
     public String getWikidataId() throws URISyntaxException {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikidata")) {
-                return getLastPartOfRelationUrl(relation);
+                return relation.getLastPartOfUrl();
             }
         }
         throw new NoSuchElementException("Wikidata not found");
@@ -56,13 +56,9 @@ public class MusicBrainzContent {
     public String getWikipediaTitle() throws URISyntaxException {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals("wikipedia")) {
-                return getLastPartOfRelationUrl(relation);
+                return relation.getLastPartOfUrl();
             }
         }
         throw new NoSuchElementException("Wikipedia relation not found");
-    }
-
-    private String getLastPartOfRelationUrl(MusicBrainzRelation relation) throws URISyntaxException {
-        return relation.getUrl().lastPartOfUrl();
     }
 }
