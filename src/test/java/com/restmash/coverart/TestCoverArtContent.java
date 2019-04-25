@@ -2,7 +2,9 @@ package com.restmash.coverart;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 class TestCoverArtContent {
     @Test
