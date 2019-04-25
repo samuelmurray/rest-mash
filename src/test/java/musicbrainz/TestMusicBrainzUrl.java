@@ -1,9 +1,9 @@
 package musicbrainz;
 
+import java.net.URISyntaxException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.net.URISyntaxException;
 
 import static org.junit.Assert.*;
 

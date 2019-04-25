@@ -1,14 +1,14 @@
 package musicbrainz;
 
 import app.Album;
-import org.junit.jupiter.api.Test;
 
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TestMusicBrainzContent {
 
@@ -24,7 +24,7 @@ class TestMusicBrainzContent {
     void testContentFactoryWikipediaTitleMissing() {
         String mbid = "5b11f4ce-a62d-471e-81fc-a69a8278c7da";
         MusicBrainzContent content = MusicBrainzContentFactory.createFromMbid(mbid);
-        assertThrows(NoSuchElementException.class, content::getWikipediaTitle);
+        Assertions.assertThrows(NoSuchElementException.class, content::getWikipediaTitle);
     }
 
     @Test
@@ -55,7 +55,7 @@ class TestMusicBrainzContent {
     void testContentFactoryWikidataIdMissing() {
         String mbid = "09302d63-d57f-4fe0-9c37-095843b91dff";
         MusicBrainzContent content = MusicBrainzContentFactory.createFromMbid(mbid);
-        assertThrows(NoSuchElementException.class, content::getWikidataId);
+        Assertions.assertThrows(NoSuchElementException.class, content::getWikidataId);
     }
 
     @Test
