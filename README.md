@@ -19,7 +19,18 @@ $ brew install maven
 However, all tests run successfully on Linux and Mac using TravisCI.
 
 ## Run
-To run the code, we use Maven and Spring Boot. The recommended way is to run it directly:
+
+### Docker
+
+
+### Maven
+First, clone the repository.
+
+```
+$ git clone git@github.com:samuelmurray/rest-mash.git
+```
+
+To run the code, we use Maven and Spring Boot. It can either be run directly:
 
 ```
 $ mvn spring-boot:run
