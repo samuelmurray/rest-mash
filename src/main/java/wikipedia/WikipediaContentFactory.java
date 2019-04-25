@@ -23,7 +23,7 @@ public class WikipediaContentFactory {
 
     private static String createTitleFromWikidataId(String wikidataId) {
         WikidataContent content = WikidataContentFactory.createFromWikidataId(wikidataId);
-        return content.getEnwikiTitle(wikidataId);
+        return content.getWikipediaTitle(wikidataId);
     }
 
     private static String buildUrl(String wikipediaTitle) {
