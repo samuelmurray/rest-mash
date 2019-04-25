@@ -10,6 +10,6 @@ RUN mvn -f ./pom.xml clean package
 # Package stage
 #
 FROM openjdk:8-jre-slim
-COPY --from=build ./target/gs-rest-service-0.1.0.jar /usr/local/lib/rest-mash.jar
+COPY --from=build ./target/gs-rest-service-0.1-alpha.jar /usr/local/lib/rest-mash.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/rest-mash.jar"]
