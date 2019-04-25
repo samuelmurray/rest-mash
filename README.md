@@ -21,13 +21,17 @@ However, all tests run successfully on Linux and Mac using TravisCI.
 ## Run
 
 ### Docker
-
+We provide a docker container for this project - samuelmurray/rest-mash. Run it with the following command:
+```
+$ docker run -p 8080:8080 samuelmurray/rest-mash:latest
+``` 
 
 ### Maven
 First, clone the repository.
 
 ```
 $ git clone git@github.com:samuelmurray/rest-mash.git
+$ cd rest-mash
 ```
 
 To run the code, we use Maven and Spring Boot. It can either be run directly:
