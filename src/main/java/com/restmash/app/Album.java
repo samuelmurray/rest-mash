@@ -1,7 +1,6 @@
 package com.restmash.app;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.restmash.coverart.CoverArtContentFactory;
 import com.restmash.coverart.CoverArtContent;
 import com.restmash.coverart.CoverArtImage;
 
@@ -25,10 +24,6 @@ public class Album {
     @JsonProperty(value = "id")
     public void setMbid(String mbid) {
         this.mbid = mbid;
-    }
-
-    public void addCoverArt() {
-        content = CoverArtContentFactory.createFromMbid(mbid);
     }
 
     public void setContent(CoverArtContent content) {
