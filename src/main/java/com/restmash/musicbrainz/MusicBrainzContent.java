@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
@@ -41,8 +43,18 @@ public class MusicBrainzContent {
     }
 
     public void addCoverArtToAlbums() {
+        int parallelism = 20;
+        ForkJoinPool myPool = new ForkJoinPool(parallelism);
         List<Album> albumList = Arrays.asList(albums);
-        albumList.parallelStream().forEach(Album::addCoverArt);
+        try {
+            myPool.submit(() ->
+                    albumList.parallelStream().forEach(Album::addCoverArt)
+                    ).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getWikidataId() throws URISyntaxException {
