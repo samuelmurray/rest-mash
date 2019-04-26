@@ -1,5 +1,7 @@
 package com.restmash.app;
 
+import com.restmash.coverart.CoverArtContent;
+import com.restmash.coverart.CoverArtContentFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
@@ -35,33 +37,28 @@ class TestAlbum {
     }
 
     @Test
-    void getImagesNull() {
+    void testGetImagesNull() {
         Album album = new Album();
         assertNull(album.getImages());
     }
 
     @Test
-    void addCoverArt() {
+    void testSetImages() {
         String mbid = "438bcaf5-644b-3036-bf0d-bcc96f6482cf";
         Album album = new Album();
         album.setMbid(mbid);
-        album.addCoverArt();
+        CoverArtContent content = CoverArtContentFactory.createFromMbid(mbid);
+        album.setContent(content);
         assertNotNull(album.getImages());
     }
 
     @Test
-    void addCoverArtMissing() {
+    void testSetContentMissingImages() {
         String mbid = "4de7f50b-0a20-47bd-b29b-67568d1a866d";
         Album album = new Album();
         album.setMbid(mbid);
-        album.addCoverArt();
-        assertNull(album.getImages());
-    }
-
-    @Test
-    void addCoverArtNull() {
-        Album album = new Album();
-        album.addCoverArt();
+        CoverArtContent content = CoverArtContentFactory.createFromMbid(mbid);
+        album.setContent(content);
         assertNull(album.getImages());
     }
 }
