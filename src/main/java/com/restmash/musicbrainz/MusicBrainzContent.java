@@ -1,11 +1,15 @@
 package com.restmash.musicbrainz;
 
+import com.restmash.app.AddCoverArtRunnable;
 import com.restmash.app.Album;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
@@ -39,9 +43,15 @@ public class MusicBrainzContent {
     }
 
     public void addCoverArtToAlbums() {
+        ExecutorService service = Executors.newCachedThreadPool();
         for (Album album : albums) {
-            Thread thread = new Thread(new AddCoverArtRunnable(album));
-            thread.start();
+            service.execute(new AddCoverArtRunnable(album));
+        }
+        service.shutdown();
+        try {
+            service.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
