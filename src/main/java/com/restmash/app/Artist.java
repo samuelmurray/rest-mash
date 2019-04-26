@@ -13,10 +13,9 @@ public class Artist {
     private final MusicBrainzContent musicBrainzContent;
     private final WikipediaContent wikipediaContent;
 
-    public Artist(String mbid) {
+    public Artist(String mbid, MusicBrainzContent musicBrainzContent) {
         this.mbid = mbid;
-        musicBrainzContent = createMusicBrainzContent(mbid);
-        musicBrainzContent.addCoverArtToAlbums();
+        this.musicBrainzContent = musicBrainzContent;
         wikipediaContent = createWikipediaContent();
     }
 
@@ -37,10 +36,6 @@ public class Artist {
             return "";
         }
         return wikipediaContent.getExtract();
-    }
-
-    private MusicBrainzContent createMusicBrainzContent(String mbid) {
-        return MusicBrainzContentFactory.createFromMbid(mbid);
     }
 
     private WikipediaContent createWikipediaContent() {
