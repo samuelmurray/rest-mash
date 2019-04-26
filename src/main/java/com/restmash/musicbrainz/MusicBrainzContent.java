@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -39,9 +42,8 @@ public class MusicBrainzContent {
     }
 
     public void addCoverArtToAlbums() {
-        for (Album album : albums) {
-            album.addCoverArt();
-        }
+        List<Album> albumList = new ArrayList<>(Arrays.asList(albums));
+        albumList.parallelStream().forEach(Album::addCoverArt);
     }
 
     public String getWikidataId() throws URISyntaxException {
