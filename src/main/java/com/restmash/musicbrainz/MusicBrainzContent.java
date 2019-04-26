@@ -40,7 +40,7 @@ public class MusicBrainzContent {
 
     public void addCoverArtToAlbums() {
         for (Album album : albums) {
-            AddCoverArtThread thread = new AddCoverArtThread(album);
+            Thread thread = new Thread(new AddCoverArtRunnable(album));
             thread.start();
         }
     }
