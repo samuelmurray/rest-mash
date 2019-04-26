@@ -13,10 +13,11 @@ import java.util.NoSuchElementException;
 
 @RestController
 public class ArtistController {
+    private MusicBrainzContent musicBrainzContent;
 
     @RequestMapping("/artist")
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
-        MusicBrainzContent musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
+        musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
         musicBrainzContent.addCoverArtToAlbums();
         WikipediaContent wikipediaContent = createWikipediaContent();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
