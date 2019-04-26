@@ -42,7 +42,7 @@ public class MusicBrainzContent {
     }
 
     public void addCoverArtToAlbums() {
-        List<Album> albumList = new ArrayList<>(Arrays.asList(albums));
+        List<Album> albumList = Arrays.asList(albums);
         albumList.parallelStream().forEach(Album::addCoverArt);
     }
 
