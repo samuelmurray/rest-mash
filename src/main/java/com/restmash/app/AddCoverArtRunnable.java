@@ -1,5 +1,8 @@
 package com.restmash.app;
 
+import com.restmash.coverart.CoverArtContent;
+import com.restmash.coverart.CoverArtContentFactory;
+
 public class AddCoverArtRunnable implements Runnable {
     private final Album album;
 
@@ -8,6 +11,8 @@ public class AddCoverArtRunnable implements Runnable {
     }
 
     public void run() {
-        album.addCoverArt();
+        String mbid = album.getMbid();
+        CoverArtContent content = CoverArtContentFactory.createFromMbid(mbid);
+        album.setContent(content);
     }
 }
