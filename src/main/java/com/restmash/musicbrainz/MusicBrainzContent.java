@@ -1,13 +1,15 @@
 package com.restmash.musicbrainz;
 
+import com.restmash.app.AddCoverArtRunnable;
 import com.restmash.app.Album;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MusicBrainzContent {
@@ -41,8 +43,16 @@ public class MusicBrainzContent {
     }
 
     public void addCoverArtToAlbums() {
-        List<Album> albumList = Arrays.asList(albums);
-        albumList.parallelStream().forEach(Album::addCoverArt);
+        ExecutorService service = Executors.newCachedThreadPool();
+        for (Album album : albums) {
+            service.execute(new AddCoverArtRunnable(album));
+        }
+        service.shutdown();
+        try {
+            service.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getWikidataId() throws URISyntaxException {
