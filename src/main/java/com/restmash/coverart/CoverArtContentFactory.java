@@ -15,7 +15,6 @@ public class CoverArtContentFactory {
             String url = buildUrl(mbid);
             return restTemplate.getForObject(url, CoverArtContent.class);
         } catch (HttpClientErrorException e) {
-            System.err.println(String.format("CoverArtContent for %s not created due to HttpClientErrorException: %s", mbid, e));
             return null;
         }
     }
