@@ -31,7 +31,6 @@ public class Album {
         content = CoverArtContentFactory.createFromMbid(mbid);
     }
 
-
     public CoverArtImage[] getImages() {
         if (content == null) {
             return null;
