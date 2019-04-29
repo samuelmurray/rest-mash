@@ -4,13 +4,10 @@ import com.restmash.musicbrainz.AddCoverArtToAlbumsRunnable;
 import com.restmash.musicbrainz.MusicBrainzContent;
 import com.restmash.musicbrainz.MusicBrainzContentFactory;
 import com.restmash.wikipedia.WikipediaContent;
-import com.restmash.wikipedia.WikipediaContentFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URISyntaxException;
-import java.util.NoSuchElementException;
 import java.util.concurrent.*;
 
 @RestController
