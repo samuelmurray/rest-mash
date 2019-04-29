@@ -21,10 +21,15 @@ public class ArtistController {
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
         service = Executors.newCachedThreadPool();
-        service.execute(new AddCoverArtToAlbumsRunnable(musicBrainzContent));
+        addCoverArtToAlbumsWithService();
         shutdownServiceAndAwaitTermination();
         WikipediaContent wikipediaContent = createWikipediaContent();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
+    }
+
+    private void addCoverArtToAlbumsWithService() {
+        AddCoverArtToAlbumsRunnable addCoverArtToAlbumsTask = new AddCoverArtToAlbumsRunnable(musicBrainzContent);
+        service.execute(addCoverArtToAlbumsTask);
     }
 
     private void shutdownServiceAndAwaitTermination() {
