@@ -46,6 +46,4 @@ public class CreateWikipediaContentCallable implements Callable<WikipediaContent
         String wikidataId = musicBrainzContent.getWikidataId();
         return WikipediaContentFactory.createFromWikidataId(wikidataId);
     }
-
-
 }
