@@ -55,20 +55,24 @@ public class MusicBrainzContent {
         }
     }
 
-    public String getWikidataId() throws URISyntaxException {
+    public String getWikidataId() {
         String type = "wikidata";
         return getLastPartOfUrlForType(type);
     }
 
-    public String getWikipediaTitle() throws URISyntaxException {
+    public String getWikipediaTitle() {
         String type = "wikipedia";
         return getLastPartOfUrlForType(type);
     }
 
-    private String getLastPartOfUrlForType(String type) throws URISyntaxException {
+    private String getLastPartOfUrlForType(String type) {
         for (MusicBrainzRelation relation : relations) {
             if (relation.getType().equals(type)) {
-                return relation.getLastPartOfUrl();
+                try {
+                    return relation.getLastPartOfUrl();
+                } catch (URISyntaxException e) {
+                    throw new NoSuchElementException(String.format("Relation \"%s\" not found", type));
+                }
             }
         }
         throw new NoSuchElementException(String.format("Relation \"%s\" not found", type));
