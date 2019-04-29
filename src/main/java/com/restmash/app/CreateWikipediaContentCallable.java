@@ -21,14 +21,14 @@ public class CreateWikipediaContentCallable implements Callable<WikipediaContent
 
     private WikipediaContent createWikipediaContent() {
         try {
-            return createWikipediaContentSafe();
+            return createWikipediaContentFromTitleOrId();
         } catch (NoSuchElementException e) {
             System.err.println(String.format("WikipediaContent not created due to Exception: %s", e));
             return null;
         }
     }
 
-    private WikipediaContent createWikipediaContentSafe() {
+    private WikipediaContent createWikipediaContentFromTitleOrId() {
         try {
             return createWikipediaContentFromTitle();
         } catch (NoSuchElementException e) {
