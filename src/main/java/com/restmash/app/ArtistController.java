@@ -21,8 +21,8 @@ public class ArtistController {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
         service = Executors.newCachedThreadPool();
         addCoverArtToAlbums();
-        shutdownServiceAndAwaitTermination();
         createWikipediaContent();
+        shutdownServiceAndAwaitTermination();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
