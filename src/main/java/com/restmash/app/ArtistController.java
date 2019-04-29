@@ -15,6 +15,7 @@ import java.util.concurrent.*;
 @RestController
 public class ArtistController {
     private MusicBrainzContent musicBrainzContent;
+    private WikipediaContent wikipediaContent;
     private ExecutorService service;
 
     @RequestMapping("/artist")
@@ -23,7 +24,7 @@ public class ArtistController {
         service = Executors.newCachedThreadPool();
         addCoverArtToAlbumsWithService();
         shutdownServiceAndAwaitTermination();
-        WikipediaContent wikipediaContent = createWikipediaContent();
+        wikipediaContent = createWikipediaContent();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
