@@ -27,13 +27,11 @@ public class ArtistController {
     }
 
     private void addCoverArtToAlbums() {
-        AddCoverArtToAlbumsRunnable addCoverArtToAlbumsTask = new AddCoverArtToAlbumsRunnable(musicBrainzContent);
-        service.execute(addCoverArtToAlbumsTask);
+        service.execute(new AddCoverArtToAlbumsRunnable(musicBrainzContent));
     }
 
     private void createWikipediaContent() {
-        CreateWikipediaContentCallable createWikipediaContentTask = new CreateWikipediaContentCallable(musicBrainzContent);
-        Future<WikipediaContent> future = service.submit(createWikipediaContentTask);
+        Future<WikipediaContent> future = service.submit(new CreateWikipediaContentCallable(musicBrainzContent));
         try {
             wikipediaContent = future.get();
         } catch (InterruptedException | ExecutionException e) {
