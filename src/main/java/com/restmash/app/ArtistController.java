@@ -1,5 +1,6 @@
 package com.restmash.app;
 
+import com.restmash.musicbrainz.AddCoverArtToAlbumsRunnable;
 import com.restmash.musicbrainz.MusicBrainzContent;
 import com.restmash.musicbrainz.MusicBrainzContentFactory;
 import com.restmash.wikipedia.WikipediaContent;
