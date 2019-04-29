@@ -24,13 +24,23 @@ public class ArtistController {
         service = Executors.newCachedThreadPool();
         addCoverArtToAlbumsWithService();
         shutdownServiceAndAwaitTermination();
-        wikipediaContent = createWikipediaContent();
+        createWikipediaContentWithService();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
     private void addCoverArtToAlbumsWithService() {
         AddCoverArtToAlbumsRunnable addCoverArtToAlbumsTask = new AddCoverArtToAlbumsRunnable(musicBrainzContent);
         service.execute(addCoverArtToAlbumsTask);
+    }
+
+    private void createWikipediaContentWithService() {
+        CreateWikipediaContentRunnable createWikipediaContentTask = new CreateWikipediaContentRunnable(musicBrainzContent);
+        Future<WikipediaContent> future = service.submit(createWikipediaContentTask);
+        try {
+            wikipediaContent = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     private void shutdownServiceAndAwaitTermination() {
