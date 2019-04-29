@@ -20,18 +20,18 @@ public class ArtistController {
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
         service = Executors.newCachedThreadPool();
-        addCoverArtToAlbumsWithService();
+        addCoverArtToAlbums();
         shutdownServiceAndAwaitTermination();
-        createWikipediaContentWithService();
+        createWikipediaContent();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
-    private void addCoverArtToAlbumsWithService() {
+    private void addCoverArtToAlbums() {
         AddCoverArtToAlbumsRunnable addCoverArtToAlbumsTask = new AddCoverArtToAlbumsRunnable(musicBrainzContent);
         service.execute(addCoverArtToAlbumsTask);
     }
 
-    private void createWikipediaContentWithService() {
+    private void createWikipediaContent() {
         CreateWikipediaContentCallable createWikipediaContentTask = new CreateWikipediaContentCallable(musicBrainzContent);
         Future<WikipediaContent> future = service.submit(createWikipediaContentTask);
         try {
