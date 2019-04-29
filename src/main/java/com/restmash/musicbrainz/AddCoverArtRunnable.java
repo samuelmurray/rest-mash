@@ -1,9 +1,9 @@
 package com.restmash.musicbrainz;
 
-public class AddCoverArtToAlbumsRunnable implements Runnable {
+public class AddCoverArtRunnable implements Runnable {
     private final MusicBrainzContent content;
 
-    public AddCoverArtToAlbumsRunnable(MusicBrainzContent content) {
+    public AddCoverArtRunnable(MusicBrainzContent content) {
         this.content = content;
     }
 

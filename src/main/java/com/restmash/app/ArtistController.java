@@ -1,6 +1,6 @@
 package com.restmash.app;
 
-import com.restmash.musicbrainz.AddCoverArtToAlbumsRunnable;
+import com.restmash.musicbrainz.AddCoverArtRunnable;
 import com.restmash.musicbrainz.MusicBrainzContent;
 import com.restmash.musicbrainz.MusicBrainzContentFactory;
 import com.restmash.wikipedia.WikipediaContent;
@@ -27,7 +27,7 @@ public class ArtistController {
     }
 
     private void addCoverArtToAlbums() {
-        service.execute(new AddCoverArtToAlbumsRunnable(musicBrainzContent));
+        service.execute(new AddCoverArtRunnable(musicBrainzContent));
     }
 
     private void createWikipediaContent() {
