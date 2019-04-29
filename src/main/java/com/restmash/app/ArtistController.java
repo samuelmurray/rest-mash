@@ -34,7 +34,7 @@ public class ArtistController {
     }
 
     private void createWikipediaContentWithService() {
-        CreateWikipediaContentRunnable createWikipediaContentTask = new CreateWikipediaContentRunnable(musicBrainzContent);
+        CreateWikipediaContentCallable createWikipediaContentTask = new CreateWikipediaContentCallable(musicBrainzContent);
         Future<WikipediaContent> future = service.submit(createWikipediaContentTask);
         try {
             wikipediaContent = future.get();

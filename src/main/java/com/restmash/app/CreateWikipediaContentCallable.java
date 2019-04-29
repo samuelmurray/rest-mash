@@ -8,10 +8,10 @@ import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
-public class CreateWikipediaContentRunnable implements Callable<WikipediaContent> {
+public class CreateWikipediaContentCallable implements Callable<WikipediaContent> {
     private MusicBrainzContent musicBrainzContent;
 
-    public CreateWikipediaContentRunnable(MusicBrainzContent musicBrainzContent) {
+    public CreateWikipediaContentCallable(MusicBrainzContent musicBrainzContent) {
         this.musicBrainzContent = musicBrainzContent;
     }
 
