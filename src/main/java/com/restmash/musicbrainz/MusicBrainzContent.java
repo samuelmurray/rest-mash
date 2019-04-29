@@ -1,6 +1,6 @@
 package com.restmash.musicbrainz;
 
-import com.restmash.app.AddCoverArtRunnable;
+import com.restmash.app.AddCoverArtToAlbumRunnable;
 import com.restmash.app.Album;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,7 +45,7 @@ public class MusicBrainzContent {
     public void addCoverArtToAlbums() {
         ExecutorService service = Executors.newCachedThreadPool();
         for (Album album : albums) {
-            service.execute(new AddCoverArtRunnable(album));
+            service.execute(new AddCoverArtToAlbumRunnable(album));
         }
         service.shutdown();
         try {
