@@ -61,7 +61,7 @@ Alternatively, you can build a JAR file and run that:
 
 ```
 $ mvn clean package
-$ java -jar target/gs-rest-service-0.1.0.jar
+$ java -jar target/gs-rest-service-0.2-alpha.jar
 ```
 
 This will run all tests prior to building the JAR, which might take a while - see Tests section below.
