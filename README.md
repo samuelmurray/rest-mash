@@ -57,16 +57,6 @@ It can be run directly:
 $ mvn spring-boot:run
 ```
 
-Alternatively, you can build a JAR file and run that:
-
-```
-$ mvn clean package
-$ java -jar target/gs-rest-service-0.2-alpha.jar
-```
-
-This will run all tests prior to building the JAR, which might take a while - see Tests section below.
-
-
 ### Service
 
 Either way you run the application, it will start a service on `localhost:8080`.
