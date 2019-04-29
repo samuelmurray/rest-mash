@@ -10,27 +10,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 @RestController
 public class ArtistController {
     private MusicBrainzContent musicBrainzContent;
+    private ExecutorService service;
 
     @RequestMapping("/artist")
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
-        ExecutorService service = Executors.newCachedThreadPool();
+        service = Executors.newCachedThreadPool();
         service.execute(new AddCoverArtToAlbumsRunnable(musicBrainzContent));
+        shutdownServiceAndAwaitTermination();
+        WikipediaContent wikipediaContent = createWikipediaContent();
+        return new Artist(mbid, musicBrainzContent, wikipediaContent);
+    }
+
+    private void shutdownServiceAndAwaitTermination() {
         service.shutdown();
         try {
             service.awaitTermination(1, TimeUnit.MINUTES);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        WikipediaContent wikipediaContent = createWikipediaContent();
-        return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
     private WikipediaContent createWikipediaContent() {
