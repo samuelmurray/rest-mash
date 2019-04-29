@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class ArtistController {
@@ -18,7 +21,14 @@ public class ArtistController {
     @RequestMapping("/artist")
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
-        musicBrainzContent.addCoverArtToAlbums();
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.execute(new AddCoverArtToAlbumsRunnable(musicBrainzContent));
+        service.shutdown();
+        try {
+            service.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WikipediaContent wikipediaContent = createWikipediaContent();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
