@@ -1,5 +1,6 @@
 package com.restmash.app;
 
+import com.restmash.album.Album;
 import com.restmash.coverart.CoverArtContent;
 import com.restmash.coverart.CoverArtContentFactory;
 import org.junit.jupiter.api.Test;

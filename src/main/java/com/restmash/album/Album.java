@@ -1,4 +1,4 @@
-package com.restmash.app;
+package com.restmash.album;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.restmash.coverart.CoverArtContent;

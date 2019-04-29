@@ -1,52 +1,54 @@
 package com.restmash.app;
 
+import com.restmash.musicbrainz.AddCoverArtRunnable;
 import com.restmash.musicbrainz.MusicBrainzContent;
 import com.restmash.musicbrainz.MusicBrainzContentFactory;
 import com.restmash.wikipedia.WikipediaContent;
-import com.restmash.wikipedia.WikipediaContentFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URISyntaxException;
-import java.util.NoSuchElementException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class ArtistController {
     private MusicBrainzContent musicBrainzContent;
+    private WikipediaContent wikipediaContent;
+    private ExecutorService service;
 
     @RequestMapping("/artist")
     public Artist artist(@RequestParam(value = "mbid") String mbid) {
         musicBrainzContent = MusicBrainzContentFactory.createFromMbid(mbid);
-        musicBrainzContent.addCoverArtToAlbums();
-        WikipediaContent wikipediaContent = createWikipediaContent();
+        service = Executors.newCachedThreadPool();
+        addCoverArtToAlbums();
+        createWikipediaContent();
+        shutdownServiceAndAwaitTermination();
         return new Artist(mbid, musicBrainzContent, wikipediaContent);
     }
 
-    private WikipediaContent createWikipediaContent() {
+    private void addCoverArtToAlbums() {
+        service.execute(new AddCoverArtRunnable(musicBrainzContent));
+    }
+
+    private void createWikipediaContent() {
+        Future<WikipediaContent> future = service.submit(new CreateWikipediaContentCallable(musicBrainzContent));
         try {
-            return createWikipediaContentSafe();
-        } catch (NoSuchElementException | URISyntaxException e) {
-            System.err.println(String.format("WikipediaContent not created due to Exception: %s", e));
-            return null;
+            wikipediaContent = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
         }
     }
 
-    private WikipediaContent createWikipediaContentSafe() throws URISyntaxException {
+    private void shutdownServiceAndAwaitTermination() {
+        service.shutdown();
         try {
-            return createWikipediaContentFromTitle();
-        } catch (NoSuchElementException e) {
-            return createWikipediaContentFromId();
+            service.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
-
-    private WikipediaContent createWikipediaContentFromTitle() throws URISyntaxException {
-        String title = musicBrainzContent.getWikipediaTitle();
-        return WikipediaContentFactory.createFromWikipediaTitle(title);
-    }
-
-    private WikipediaContent createWikipediaContentFromId() throws URISyntaxException {
-        String wikidataId = musicBrainzContent.getWikidataId();
-        return WikipediaContentFactory.createFromWikidataId(wikidataId);
     }
 }

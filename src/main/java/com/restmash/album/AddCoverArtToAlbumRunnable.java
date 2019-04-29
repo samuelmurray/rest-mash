@@ -1,12 +1,12 @@
-package com.restmash.app;
+package com.restmash.album;
 
 import com.restmash.coverart.CoverArtContent;
 import com.restmash.coverart.CoverArtContentFactory;
 
-public class AddCoverArtRunnable implements Runnable {
+public class AddCoverArtToAlbumRunnable implements Runnable {
     private final Album album;
 
-    public AddCoverArtRunnable(Album album) {
+    public AddCoverArtToAlbumRunnable(Album album) {
         this.album = album;
     }
 
