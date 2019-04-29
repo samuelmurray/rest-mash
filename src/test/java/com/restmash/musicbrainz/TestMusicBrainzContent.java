@@ -2,6 +2,7 @@ package com.restmash.musicbrainz;
 
 import com.restmash.album.Album;
 
+import java.net.URISyntaxException;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 class TestMusicBrainzContent {
 
@@ -33,7 +35,11 @@ class TestMusicBrainzContent {
         String mbid = "a04e7da2-998b-4e36-abaa-014c00b93622";
         MusicBrainzContent content = MusicBrainzContentFactory.createFromMbid(mbid);
         String expected = "Veronica_Maggio";
-        assertEquals(expected, content.getWikipediaTitle());
+        try {
+            assertEquals(expected, content.getWikipediaTitle());
+        } catch (URISyntaxException e) {
+            fail();
+        }
     }
 
     @Test
@@ -41,7 +47,11 @@ class TestMusicBrainzContent {
         String mbid = "a04e7da2-998b-4e36-abaa-014c00b93622";
         MusicBrainzContent content = MusicBrainzContentFactory.createFromMbid(mbid);
         String expected = "Q260597";
-        assertEquals(expected, content.getWikidataId());
+        try {
+            assertEquals(expected, content.getWikidataId());
+        } catch (URISyntaxException e) {
+            fail();
+        }
     }
 
     @Test
