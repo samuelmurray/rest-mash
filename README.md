@@ -43,15 +43,14 @@ $ docker run -p 8080:8080 samuelmurray/rest-mash:latest
 
 ### Maven
 
-To run with Maven, first, clone the repository.
+First clone the repository:
 
 ```
 $ git clone git@github.com:samuelmurray/rest-mash.git
 $ cd rest-mash
 ```
 
-To run the code, we use Maven and Spring Boot.
-It can be run directly:
+Using Maven and Spring Boot, run the application:
 
 ```
 $ mvn spring-boot:run
