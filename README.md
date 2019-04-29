@@ -33,7 +33,7 @@ $ brew install maven
 
 ### Docker
 
-We provide a Docker container for this project called _samuelmurray/rest-mash_.
+We provide a Docker image for this project called _samuelmurray/rest-mash_.
 Run it with the following command:
 
 ```
