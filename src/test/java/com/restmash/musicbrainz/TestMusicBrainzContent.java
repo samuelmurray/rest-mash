@@ -1,6 +1,6 @@
 package com.restmash.musicbrainz;
 
-import com.restmash.app.Album;
+import com.restmash.album.Album;
 
 import java.net.URISyntaxException;
 import java.util.NoSuchElementException;

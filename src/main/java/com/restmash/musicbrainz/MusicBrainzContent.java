@@ -1,7 +1,7 @@
 package com.restmash.musicbrainz;
 
-import com.restmash.app.AddCoverArtToAlbumRunnable;
-import com.restmash.app.Album;
+import com.restmash.album.AddCoverArtToAlbumRunnable;
+import com.restmash.album.Album;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

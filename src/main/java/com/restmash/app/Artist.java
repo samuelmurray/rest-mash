@@ -1,5 +1,6 @@
 package com.restmash.app;
 
+import com.restmash.album.Album;
 import com.restmash.musicbrainz.MusicBrainzContent;
 import com.restmash.wikipedia.WikipediaContent;
 

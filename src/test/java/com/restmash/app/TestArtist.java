@@ -1,5 +1,6 @@
 package com.restmash.app;
 
+import com.restmash.album.Album;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertArrayEquals;

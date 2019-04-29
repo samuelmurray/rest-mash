@@ -1,4 +1,4 @@
-package com.restmash.app;
+package com.restmash.album;
 
 import com.restmash.coverart.CoverArtContent;
 import com.restmash.coverart.CoverArtContentFactory;
